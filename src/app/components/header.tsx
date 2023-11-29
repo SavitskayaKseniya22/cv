@@ -14,6 +14,7 @@ import {
 import Link from 'next/link';
 import styled from 'styled-components';
 import { ScreenSize } from '@/components/interfaces';
+import { usePathname } from 'next/navigation';
 
 const StyledHeader = styled('header')`
   display: flex;
@@ -58,6 +59,10 @@ const StyledNavigationItem = styled('li')`
 `;
 
 const StyledNavigationLink = styled(Link)`
+  &.active {
+    color: #d62222;
+  }
+
   span {
     display: none;
   }
@@ -83,35 +88,57 @@ const StyledNavigationLink = styled(Link)`
 `;
 
 function Header() {
+  const pathname = usePathname();
+
   return (
     <StyledHeader>
       <StyledNavigation>
         <StyledNavigationItem>
-          <StyledNavigationLink href="/" title="About Me">
+          <StyledNavigationLink
+            href="/"
+            title="About Me"
+            className={`${pathname === '/' ? 'active' : ''}`}
+          >
             <UserIcon />
             <span>About Me</span>
           </StyledNavigationLink>
         </StyledNavigationItem>
         <StyledNavigationItem>
-          <StyledNavigationLink href="portfolio" title="Potfolio">
+          <StyledNavigationLink
+            href="portfolio"
+            title="Potfolio"
+            className={`${pathname === '/portfolio' ? 'active' : ''}`}
+          >
             <FolderIcon />
             <span>Potfolio</span>
           </StyledNavigationLink>
         </StyledNavigationItem>
         <StyledNavigationItem>
-          <StyledNavigationLink href="previous-jobs" title="Previous Jobs">
+          <StyledNavigationLink
+            href="previous-jobs"
+            title="Previous Jobs"
+            className={`${pathname === '/previous-jobs' ? 'active' : ''}`}
+          >
             <BriefcaseIcon />
             <span>Previous Jobs</span>
           </StyledNavigationLink>
         </StyledNavigationItem>
         <StyledNavigationItem>
-          <StyledNavigationLink href="contacts" title="Contacts">
+          <StyledNavigationLink
+            href="contacts"
+            title="Contacts"
+            className={`${pathname === '/contacts' ? 'active' : ''}`}
+          >
             <ChatBubbleLeftIcon />
             <span>Contacts</span>
           </StyledNavigationLink>
         </StyledNavigationItem>
         <StyledNavigationItem>
-          <StyledNavigationLink href="resume" title="Resume">
+          <StyledNavigationLink
+            href="resume"
+            title="Resume"
+            className={`${pathname === '/resume' ? 'active' : ''}`}
+          >
             <FolderArrowDownIcon />
             <span>Resume</span>
           </StyledNavigationLink>
