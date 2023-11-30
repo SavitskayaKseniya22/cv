@@ -83,6 +83,7 @@ const StyledNavigationLink = styled(Link)`
   @media ${ScreenSize.LAPTOPL} {
     span {
       display: inline;
+      white-space: nowrap;
     }
   }
 `;

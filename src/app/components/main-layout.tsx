@@ -29,9 +29,16 @@ const StyledMain = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 2;
+  flex-grow: 5;
   background-color: #1c1e1f;
   padding: 1rem;
+  overflow: auto;
+  gap: 1rem;
+  color: white;
+
+  hr {
+    width: 50%;
+  }
 
   @media ${ScreenSize.TABLET} {
     height: 90%;
