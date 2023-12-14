@@ -2,42 +2,61 @@
 
 import React from 'react';
 import styled from 'styled-components';
-
 import {
   CodeBracketIcon,
   HashtagIcon,
   Cog8ToothIcon,
-  EllipsisVerticalIcon,
 } from '@heroicons/react/24/outline';
+import { SVGType, StyledLiWithMarker } from '@/components/styled-components';
+import ProgressBar from '@/components/ProgressBar';
+import { ScreenSize } from '@/components/interfaces';
 
-const StyledSkillsList = styled('ul')`
+const StyledSkillsList = styled('ul')<{ $type: SVGType; $color: string }>`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  & > li {
+    ${StyledLiWithMarker}
+
+    & > ul {
+      width: 100%;
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
+    }
+  }
+
+  @media ${ScreenSize.LAPTOPXL} {
+    flex-direction: row;
+    hr {
+      display: none;
+    }
+  }
 `;
 
-const StyledSkillsItem = styled('li')`
+const StyledSkill = styled('li')`
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
 
-  svg {
-    width: 2rem;
-    height: 2rem;
-    color: #d62222;
+  @media ${ScreenSize.LAPTOPS} {
+    flex-direction: row;
+    width: 100%;
   }
 
-  .ellipsisVertical {
-    width: 1rem;
-    height: 1rem;
-    color: #d62222;
+  @media ${ScreenSize.LAPTOPM} {
+    width: 70%;
   }
 
-  p {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    flex-wrap: wrap;
+  @media ${ScreenSize.LAPTOPL} {
+    width: 50%;
+  }
+  @media ${ScreenSize.LAPTOPXL} {
+    width: 100%;
   }
 `;
 
@@ -64,32 +83,61 @@ function AboutMe() {
       <hr />
       <div>
         <h2>Skills</h2>
-        <StyledSkillsList>
-          <StyledSkillsItem>
-            <CodeBracketIcon />
-            <p>
-              JavaScript <EllipsisVerticalIcon className="ellipsisVertical" />{' '}
-              TypeScript <EllipsisVerticalIcon className="ellipsisVertical" />{' '}
-              React <EllipsisVerticalIcon className="ellipsisVertical" />{' '}
-              Next.js
-            </p>
-          </StyledSkillsItem>
-          <StyledSkillsItem>
-            <HashtagIcon />
-            <p>
-              {' '}
-              Css <EllipsisVerticalIcon className="ellipsisVertical" /> Sass{' '}
-              <EllipsisVerticalIcon className="ellipsisVertical" />
-              StyledComponents
-            </p>
-          </StyledSkillsItem>
-          <StyledSkillsItem>
-            <Cog8ToothIcon />
-            <p>
-              Jest <EllipsisVerticalIcon className="ellipsisVertical" /> React
-              Testing Library
-            </p>
-          </StyledSkillsItem>
+        <StyledSkillsList $type={SVGType.BIG} $color="#d62222">
+          <li>
+            <CodeBracketIcon className="marker" />
+            <ul>
+              <StyledSkill>
+                <span> JavaScript</span>
+                <ProgressBar value={4} total={5} />
+              </StyledSkill>
+              <StyledSkill>
+                <span>TypeScript</span>
+                <ProgressBar value={4} total={5} />
+              </StyledSkill>
+              <StyledSkill>
+                <span>React</span>
+                <ProgressBar value={4} total={5} />
+              </StyledSkill>
+
+              <StyledSkill>
+                <span>Next.js</span>
+                <ProgressBar value={1} total={5} />
+              </StyledSkill>
+            </ul>
+          </li>
+          <hr />
+          <li>
+            <HashtagIcon className="marker" />
+            <ul>
+              <StyledSkill>
+                <span>CSS</span>
+                <ProgressBar value={4} total={5} />
+              </StyledSkill>
+              <StyledSkill>
+                <span>SASS</span>
+                <ProgressBar value={4} total={5} />
+              </StyledSkill>
+              <StyledSkill>
+                <span>Styled Components</span>
+                <ProgressBar value={4} total={5} />
+              </StyledSkill>
+            </ul>
+          </li>
+          <hr />
+          <li>
+            <Cog8ToothIcon className="marker" />
+            <ul>
+              <StyledSkill>
+                <span>Jest</span>
+                <ProgressBar value={2} total={5} />
+              </StyledSkill>
+              <StyledSkill>
+                <span>React Testing Library</span>
+                <ProgressBar value={2} total={5} />
+              </StyledSkill>
+            </ul>
+          </li>
         </StyledSkillsList>
       </div>
     </>
