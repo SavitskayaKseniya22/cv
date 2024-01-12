@@ -5,6 +5,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { AtSymbolIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import { SVGType, StyledLiWithMarker } from '@/components/styled-components';
+import ReactMap, { FullscreenControl, Marker } from 'react-map-gl';
 import ContactsForm from './components/contacts-form';
 
 const StyledMap = styled('div')`
@@ -32,7 +33,28 @@ function Contacts() {
     <>
       <h1>Contacts</h1>
       <hr />
-      <StyledMap />
+      <StyledMap>
+        <ReactMap
+          mapboxAccessToken="pk.eyJ1IjoibmltZmE0NDAwIiwiYSI6ImNrdWcybzQyZTFqaHQyeG10dWo5MzQ5a2kifQ.SGFaxu_8iazsffda8R2DAA"
+          initialViewState={{
+            latitude: 42.68123,
+            longitude: 23.28933,
+            zoom: 14,
+          }}
+          reuseMaps
+          mapStyle="mapbox://styles/mapbox/dark-v9"
+          attributionControl={false}
+          cursor="grab"
+        >
+          <Marker
+            latitude={42.68123}
+            longitude={23.28933}
+            anchor="top"
+            color="red"
+          />
+          <FullscreenControl />
+        </ReactMap>
+      </StyledMap>
       <hr />
       <StyledContactList $type={SVGType.MIDDLE} $color="#d62222">
         <li>
