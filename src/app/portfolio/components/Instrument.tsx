@@ -1,6 +1,5 @@
 'use client';
 
-import { BackspaceIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -10,13 +9,7 @@ export const StyledInstrument = styled('li')<{ $selected: boolean }>`
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  background-color: ${(props) =>
-    props.$selected ? 'rgba(38, 70, 83)' : 'transparent'};
-
-  svg {
-    color: white;
-    width: ${(props) => (props.$selected ? '1.5rem;' : '0px')};
-  }
+  color: ${(props) => (props.$selected ? '#d62222' : 'white')};
 `;
 
 function Instrument({
@@ -36,7 +29,6 @@ function Instrument({
         addToClick();
       }}
     >
-      <BackspaceIcon />
       {children}
     </StyledInstrument>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { ScreenSize } from '@/components/interfaces';
+import { ScreenSize } from '@/app/interfaces';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';

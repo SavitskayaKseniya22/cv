@@ -7,28 +7,16 @@ export enum ScreenSize {
   LAPTOPXL = '(min-width: 2560px)',
 }
 
-export type Number = number;
-
 export type ProjectType = {
   name: string;
   description: string;
   task: string;
-  date: string;
+  date: [string, string];
   screenshots: string[];
   deploy: string;
   github: string;
   instruments: string[];
   preview: string;
-};
-
-export type InstrumentsType = {
-  projects: {
-    source: ProjectType[];
-    sorted: ProjectType[];
-  };
-
-  instruments: {
-    source: string[];
-    selected: string[];
-  };
+  complexity: number;
+  features: string[];
 };

@@ -1,8 +1,14 @@
-import { ProjectType, InstrumentsType } from '@/components/interfaces';
+import { ProjectType } from '@/app/interfaces';
+
+export enum SortType {
+  UP = 'up',
+  DOWN = 'down',
+}
 
 export enum PortfolioActionKind {
   SET = 'SET',
   SELECTANDSORT = 'SELECTANDSORT',
+  SORT = 'SORT',
 }
 
 export type PortfolioAction =
@@ -10,19 +16,50 @@ export type PortfolioAction =
       type: PortfolioActionKind.SET;
       payload: ProjectType[];
     }
-  | { type: PortfolioActionKind.SELECTANDSORT; payload: string };
+  | { type: PortfolioActionKind.SELECTANDSORT; payload: string }
+  | { type: PortfolioActionKind.SORT; payload: SortType };
+
+export type InstrumentsType = {
+  projects: {
+    source: ProjectType[];
+    sorted: ProjectType[];
+  };
+  instruments: {
+    source: string[];
+    selected: string[];
+  };
+  sort: SortType;
+};
+
+export function fixDate(string: string) {
+  return string.split('.').reverse().join('.');
+}
+
+export function getMCFromStringDate(string: string) {
+  return new Date(fixDate(string)).getTime();
+}
+
+export function sortByDate(array: ProjectType[], type: SortType) {
+  return array.sort((a, b) => {
+    const aMC = getMCFromStringDate(a.date[0]);
+    const bMC = getMCFromStringDate(b.date[0]);
+    return type === SortType.DOWN ? aMC - bMC : bMC - aMC;
+  });
+}
 
 export function reducer(
   state: InstrumentsType,
   action: PortfolioAction
 ): InstrumentsType {
   const { type, payload } = action;
+
   switch (type) {
     case PortfolioActionKind.SET:
       return {
+        ...state,
         projects: {
           source: [...payload],
-          sorted: [...payload],
+          sorted: sortByDate([...payload], state.sort),
         },
         instruments: {
           source: Array.from(
@@ -31,6 +68,7 @@ export function reducer(
           selected: [],
         },
       };
+
     case PortfolioActionKind.SELECTANDSORT: {
       let selected = [...state.instruments.selected];
 
@@ -45,9 +83,10 @@ export function reducer(
       );
 
       return {
+        ...state,
         projects: {
           ...state.projects,
-          sorted,
+          sorted: sortByDate(sorted, state.sort),
         },
         instruments: {
           ...state.instruments,
@@ -55,6 +94,17 @@ export function reducer(
         },
       };
     }
+    case PortfolioActionKind.SORT: {
+      return {
+        ...state,
+        sort: payload,
+        projects: {
+          ...state.projects,
+          sorted: sortByDate([...state.projects.sorted], payload),
+        },
+      };
+    }
+
     default:
       return state;
   }
@@ -69,4 +119,5 @@ export const portfolioInitialState = {
     source: [],
     selected: [],
   },
+  sort: SortType.UP,
 };

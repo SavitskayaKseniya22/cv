@@ -2,28 +2,16 @@
 
 'use client';
 
-import { ProjectType } from '@/components/interfaces';
+import { ProjectType } from '@/app/interfaces';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import BackButton from '@/components/backButton';
+import InstrumentsList from '@/components/instruments-list';
 
 const imageLoader = ({ src }: { src: string }) => `${src}`;
-
-export const StyledInstrumentsList = styled('ul')`
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-
-  li {
-    padding: 0.5rem;
-  }
-`;
 
 export const StyledScreenshotsList = styled('ul')`
   display: flex;
@@ -81,15 +69,21 @@ function PortfolioItem() {
       <hr />
       <p>{loadedData.description}</p>
       <hr />
-      <p>{loadedData.date}</p>
+      <p>{`${loadedData.date[0]}-${loadedData.date[1]}`}</p>
       <hr />
 
-      <StyledInstrumentsList>
+      <InstrumentsList>
         {loadedData.instruments.map((instrument) => (
           <li key={instrument}>{instrument}</li>
         ))}
-      </StyledInstrumentsList>
+      </InstrumentsList>
 
+      <hr />
+      <InstrumentsList>
+        {loadedData.features.map((instrument) => (
+          <li key={instrument}>{instrument}</li>
+        ))}
+      </InstrumentsList>
       <hr />
 
       <StyledScreenshotsList>

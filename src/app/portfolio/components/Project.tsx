@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ProjectType } from '@/components/interfaces';
+import { ProjectType, ScreenSize } from '@/app/interfaces';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -9,8 +9,13 @@ import Image from 'next/image';
 const imageLoader = ({ src }: { src: string }) => src;
 
 export const StyledProject = styled('li')`
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
+
+  @media ${ScreenSize.LAPTOPL} {
+    width: 150px;
+    height: 150px;
+  }
 
   a {
     display: flex;

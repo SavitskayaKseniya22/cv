@@ -13,7 +13,7 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { ScreenSize } from '@/components/interfaces';
+import { ScreenSize } from '@/app/interfaces';
 import { usePathname } from 'next/navigation';
 
 const StyledHeader = styled('header')`
@@ -68,7 +68,7 @@ const StyledNavigationLink = styled(Link)`
   }
 
   svg {
-    width: 1.8rem;
+    width: 2rem;
     height: 2rem;
     flex-shrink: 0;
   }
@@ -106,9 +106,9 @@ function Header() {
         </StyledNavigationItem>
         <StyledNavigationItem>
           <StyledNavigationLink
-            href="portfolio"
+            href="/portfolio"
             title="Potfolio"
-            className={`${pathname === '/portfolio' ? 'active' : ''}`}
+            className={`${/^\/portfolio*/.test(pathname) ? 'active' : ''}`}
           >
             <FolderIcon />
             <span>Potfolio</span>
@@ -116,7 +116,7 @@ function Header() {
         </StyledNavigationItem>
         <StyledNavigationItem>
           <StyledNavigationLink
-            href="previous-jobs"
+            href="/previous-jobs"
             title="Previous Jobs"
             className={`${pathname === '/previous-jobs' ? 'active' : ''}`}
           >
@@ -126,7 +126,7 @@ function Header() {
         </StyledNavigationItem>
         <StyledNavigationItem>
           <StyledNavigationLink
-            href="contacts"
+            href="/contacts"
             title="Contacts"
             className={`${pathname === '/contacts' ? 'active' : ''}`}
           >
@@ -136,7 +136,7 @@ function Header() {
         </StyledNavigationItem>
         <StyledNavigationItem>
           <StyledNavigationLink
-            href="resume"
+            href="/resume"
             title="Resume"
             className={`${pathname === '/resume' ? 'active' : ''}`}
           >

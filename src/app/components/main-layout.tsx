@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { ScreenSize } from '@/components/interfaces';
+import { ScreenSize } from '@/app/interfaces';
 import Header from './header';
 import Person from './person';
 
@@ -35,6 +35,7 @@ const StyledMain = styled('div')`
   overflow: auto;
   gap: 1rem;
   color: white;
+  order: 2;
 
   hr {
     width: 50%;
@@ -42,6 +43,7 @@ const StyledMain = styled('div')`
 
   @media ${ScreenSize.TABLET} {
     height: 90%;
+    order: 3;
   }
 `;
 

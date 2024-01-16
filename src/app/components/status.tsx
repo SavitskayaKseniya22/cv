@@ -1,13 +1,19 @@
 'use client';
 
+import { ScreenSize } from '@/app/interfaces';
 import React from 'react';
 import styled from 'styled-components';
 
 const StyledStatus = styled('div')`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: white;
+  display: none;
+
+  @media ${ScreenSize.TABLET} {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+  }
 `;
 
 const StyledStatusLine = styled('span')`
