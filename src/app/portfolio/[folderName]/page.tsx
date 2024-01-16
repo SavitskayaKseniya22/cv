@@ -6,26 +6,9 @@ import { ProjectType } from '@/app/interfaces';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import styled from 'styled-components';
 import BackButton from '@/components/backButton';
 import InstrumentsList from '@/components/instruments-list';
-
-const imageLoader = ({ src }: { src: string }) => `${src}`;
-
-export const StyledScreenshotsList = styled('ul')`
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin: auto 0;
-
-  li {
-    position: relative;
-    object-fit: contain;
-  }
-`;
+import FeaturesList from './components/features-list';
 
 function PortfolioItem() {
   const [loadedData, setLoadedData] = useState<null | ProjectType>();
@@ -79,32 +62,8 @@ function PortfolioItem() {
       </InstrumentsList>
 
       <hr />
-      <InstrumentsList>
-        {loadedData.features.map((instrument) => (
-          <li key={instrument}>{instrument}</li>
-        ))}
-      </InstrumentsList>
-      <hr />
 
-      <StyledScreenshotsList>
-        {loadedData.screenshots.map((screenshot) => (
-          <li key={screenshot}>
-            <Link href={screenshot} target="_blank">
-              <Image
-                src={screenshot}
-                alt="App screenshot"
-                loader={imageLoader}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                }}
-                width={500}
-                height={300}
-              />
-            </Link>
-          </li>
-        ))}
-      </StyledScreenshotsList>
+      <FeaturesList data={loadedData} />
     </>
   );
 }
