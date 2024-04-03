@@ -18,7 +18,7 @@ const StyledPerson = styled('div')`
 
   @media ${ScreenSize.TABLET} {
     height: 100%;
-    max-width: 200px;
+    max-width: 170px;
   }
 
   @media ${ScreenSize.LAPTOPS} {
@@ -58,16 +58,22 @@ function Person() {
       <h3>Web developer</h3>
       <StyledLinkList>
         <li>
-          <Link href="/">LinkedIn</Link>
+          <Link
+            href="https://www.linkedin.com/in/kseniia-savitskaia"
+            target="_blank"
+          >
+            LinkedIn
+          </Link>
         </li>
         <li>
-          <Link href="/">GitHub</Link>
+          <Link href="https://github.com/SavitskayaKseniya22" target="_blank">
+            GitHub
+          </Link>
         </li>
         <li>
-          <Link href="/">Telegram</Link>
-        </li>
-        <li>
-          <Link href="/">Instagram</Link>
+          <Link href="https://t.me/Berillllium" target="_blank">
+            Telegram
+          </Link>
         </li>
       </StyledLinkList>
     </StyledPerson>
