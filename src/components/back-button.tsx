@@ -9,10 +9,6 @@ import styled from 'styled-components';
 
 const StyledBackButton = styled('button')`
   color: white;
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-
   svg {
     width: 2rem;
     height: 2rem;

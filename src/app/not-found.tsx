@@ -1,5 +1,5 @@
 import React from 'react';
-import BackButton from '@/components/backButton';
+import BackButton from '@/components/back-button';
 
 function NotFound() {
   return (

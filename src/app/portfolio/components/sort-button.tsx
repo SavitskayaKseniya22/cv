@@ -4,7 +4,7 @@ import {
 } from '@heroicons/react/24/outline';
 import React from 'react';
 import styled from 'styled-components';
-import { SortType } from './portfolioReducer';
+import { SortType } from './portfolio-reducer';
 
 export const StyledSortButton = styled('button')`
   display: flex;
