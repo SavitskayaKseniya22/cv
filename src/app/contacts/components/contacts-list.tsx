@@ -1,36 +1,37 @@
 'use client';
 
-import { SVGType, StyledLiWithMarker } from '@/components/styled-components';
+import { SVGType } from '@/app/interfaces';
+import {  StyledLiWithMarker } from '@/components/styled-components';
 import { AtSymbolIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledContactList = styled('ul')<{ $type: SVGType; $color: string }>`
+const StyledContactList = styled('ul')`
   display: flex;
   gap: 1rem;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
-  li {
-    ${StyledLiWithMarker}
-  }
 `;
 
 function ContactsList() {
   return (
-    <StyledContactList $type={SVGType.MIDDLE} $color="#d62222">
-      <li>
+    <StyledContactList>
+      <StyledLiWithMarker $type={SVGType.MIDDLE} $color="#d62222">
         <AtSymbolIcon className="marker" />
-        <Link href="mailto:Savitskaya.kseniya.22@gmail.com">
-          Savitskaya.kseniya.22@gmail.com
+        <Link href="mailto:kseniia.savitskaia@gmail.com">
+          kseniia.savitskaia@gmail.com
         </Link>
-      </li>
-      <li>
+      </StyledLiWithMarker>
+      <StyledLiWithMarker $type={SVGType.MIDDLE} $color="#d62222">
         <PhoneIcon className="marker" />
-        <Link href="telto:+0-000-000-00-00">+0-000-000-00-00</Link>
-      </li>
+        <Link href="telto:+79520056415">+7-952-005-64-15</Link>
+      </StyledLiWithMarker>
+      <StyledLiWithMarker $type={SVGType.MIDDLE} $color="#d62222">
+        <PhoneIcon className="marker" />
+        <Link href="telto:+359876032638">+359-876-032-638</Link>
+      </StyledLiWithMarker>
     </StyledContactList>
   );
 }
