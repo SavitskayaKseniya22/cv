@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import { SVGType } from '@/app/interfaces';
+import styled from 'styled-components';
 
 export const StyledInput = styled('input')`
   padding: 0.5rem;
@@ -18,47 +19,13 @@ export const StyledButton = styled(StyledInput)`
   cursor: pointer;
 `;
 
-export const enum SVGType {
-  BIG,
-  MIDDLE,
-  SMALL,
-}
-
-export const StyledSVG = css<{ $type: SVGType; $color: string }>`
-  width: ${(props) => {
-    switch (props.$type) {
-      case SVGType.BIG:
-        return '2rem';
-      case SVGType.MIDDLE:
-        return '1.5rem';
-      case SVGType.SMALL:
-        return '1rem';
-      default:
-        return '1rem';
-    }
-  }};
-  height: ${(props) => {
-    switch (props.$type) {
-      case SVGType.BIG:
-        return '2rem';
-      case SVGType.MIDDLE:
-        return '1.5rem';
-      case SVGType.SMALL:
-        return '1rem';
-      default:
-        return '1rem';
-    }
-  }};
-  color: ${(props) => props.$color};
-  flex-shrink: 0;
-`;
-
-export const StyledLiWithMarker = css<{
+export const StyledLiWithMarker = styled('li')<{
   $type: SVGType;
   $color: string;
 }>`
   display: flex;
   align-items: center;
+  justify-content: center;
 
   gap: ${(props) => {
     switch (props.$type) {
@@ -73,7 +40,34 @@ export const StyledLiWithMarker = css<{
     }
   }};
 
-  .marker {
-    ${StyledSVG}
+  svg {
+    width: ${(props) => {
+      switch (props.$type) {
+        case SVGType.BIG:
+          return '2rem';
+        case SVGType.MIDDLE:
+          return '1.5rem';
+        case SVGType.SMALL:
+          return '1rem';
+        default:
+          return '1rem';
+      }
+    }};
+
+    height: ${(props) => {
+      switch (props.$type) {
+        case SVGType.BIG:
+          return '2rem';
+        case SVGType.MIDDLE:
+          return '1.5rem';
+        case SVGType.SMALL:
+          return '1rem';
+        default:
+          return '1rem';
+      }
+    }};
+
+    color: ${(props) => props.$color};
+    flex-shrink: 0;
   }
 `;

@@ -10,13 +10,20 @@ export enum ScreenSize {
 export type ProjectType = {
   name: string;
   description: string;
-  task: string;
   date: [string, string];
-  screenshots: string[];
   deploy: string;
   github: string;
   instruments: string[];
   preview: string;
   complexity: number;
-  features: string[];
+  task?: string;
+  features?: string[];
+  murkup?: string[];
+  isItReady: boolean;
 };
+
+export const enum SVGType {
+  BIG,
+  MIDDLE,
+  SMALL,
+}

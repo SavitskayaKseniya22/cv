@@ -5,28 +5,27 @@ import { ProjectType, ScreenSize } from '@/app/interfaces';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
+import Complexity from '@/components/complexity';
 
 const imageLoader = ({ src }: { src: string }) => src;
 
 export const StyledProject = styled('li')`
-  width: 120px;
-  height: 120px;
-
-  @media ${ScreenSize.LAPTOPL} {
-    width: 150px;
-    height: 150px;
-  }
-
   a {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     padding: 1rem;
-    width: 100%;
-    height: 100%;
     z-index: 1;
     overflow: hidden;
+    width: 120px;
+    height: 120px;
+    color: tan;
+
+    @media ${ScreenSize.LAPTOPM} {
+      width: 150px;
+      height: 150px;
+    }
 
     img {
       z-index: -1;
@@ -49,7 +48,17 @@ function Project({ data }: { data: ProjectType }) {
     <StyledProject>
       <Link href={`/portfolio/${data.name.toLowerCase().replaceAll(' ', '-')}`}>
         <h3>{data.name}</h3>
-        <Image fill src={data.preview} loader={imageLoader} alt={data.name} />
+        <Image
+          fill
+          src={data.preview}
+          loader={imageLoader}
+          alt={data.name}
+          unoptimized
+        />
+        <Complexity
+          complexity={data.complexity}
+          className="complexity_in-project-list"
+        />
       </Link>
     </StyledProject>
   );

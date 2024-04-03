@@ -4,118 +4,74 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   CodeBracketIcon,
-  HashtagIcon,
   Cog8ToothIcon,
+  HashtagIcon,
 } from '@heroicons/react/24/outline';
-import { SVGType, StyledLiWithMarker } from '@/components/styled-components';
-import ProgressBar from '@/components/ProgressBar';
-import { ScreenSize } from '@/app/interfaces';
+import { SVGType, ScreenSize } from '@/app/interfaces';
+import { StyledLiWithMarker } from '@/components/styled-components';
 
-const StyledSkillsList = styled('ul')<{ $type: SVGType; $color: string }>`
+const StyledSkills = styled('ul')`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+`;
 
-  & > li {
-    ${StyledLiWithMarker}
+const StyledSkillsPart = styled(StyledLiWithMarker)<{
+  $type: SVGType;
+  $color: string;
+}>`
+  display: flex;
+  align-items: center;
 
-    & > ul {
-      width: 100%;
-      display: flex;
-      gap: 0.5rem;
-      flex-direction: column;
-    }
-  }
+  flex-direction: column;
 
-  @media ${ScreenSize.LAPTOPXL} {
+  @media ${ScreenSize.TABLET} {
     flex-direction: row;
   }
 `;
 
-const StyledSkill = styled('li')`
+const StyledSkillsListDetailed = styled('ul')`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  justify-content: space-between;
-  flex-direction: column;
-  width: 100%;
+  gap: 2rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
 
-  @media ${ScreenSize.LAPTOPS} {
-    flex-direction: row;
-    width: 100%;
-  }
-
-  @media ${ScreenSize.LAPTOPM} {
-    width: 70%;
-  }
-
-  @media ${ScreenSize.LAPTOPL} {
-    width: 50%;
-  }
-  @media ${ScreenSize.LAPTOPXL} {
-    width: 100%;
+  @media ${ScreenSize.TABLET} {
+    width: unset;
   }
 `;
 
 function SkillsList() {
   return (
-    <div>
-      <h2>Skills</h2>
-      <StyledSkillsList $type={SVGType.BIG} $color="#d62222">
-        <li>
-          <CodeBracketIcon className="marker" />
-          <ul>
-            <StyledSkill>
-              <span> JavaScript</span>
-              <ProgressBar value={4} total={5} />
-            </StyledSkill>
-            <StyledSkill>
-              <span>TypeScript</span>
-              <ProgressBar value={4} total={5} />
-            </StyledSkill>
-            <StyledSkill>
-              <span>React</span>
-              <ProgressBar value={4} total={5} />
-            </StyledSkill>
-
-            <StyledSkill>
-              <span>Next.js</span>
-              <ProgressBar value={1} total={5} />
-            </StyledSkill>
-          </ul>
-        </li>
-        <li>
-          <HashtagIcon className="marker" />
-          <ul>
-            <StyledSkill>
-              <span>CSS</span>
-              <ProgressBar value={4} total={5} />
-            </StyledSkill>
-            <StyledSkill>
-              <span>SASS</span>
-              <ProgressBar value={4} total={5} />
-            </StyledSkill>
-            <StyledSkill>
-              <span>Styled Components</span>
-              <ProgressBar value={4} total={5} />
-            </StyledSkill>
-          </ul>
-        </li>
-        <li>
-          <Cog8ToothIcon className="marker" />
-          <ul>
-            <StyledSkill>
-              <span>Jest</span>
-              <ProgressBar value={1} total={5} />
-            </StyledSkill>
-            <StyledSkill>
-              <span>React Testing Library</span>
-              <ProgressBar value={1} total={5} />
-            </StyledSkill>
-          </ul>
-        </li>
-      </StyledSkillsList>
-    </div>
+    <StyledSkills>
+      <StyledSkillsPart $type={SVGType.BIG} $color="#d62222">
+        <CodeBracketIcon className="marker" />
+        <StyledSkillsListDetailed>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>React</li>
+          <li>Next.js</li>
+        </StyledSkillsListDetailed>
+      </StyledSkillsPart>
+      <StyledSkillsPart $type={SVGType.BIG} $color="#d62222">
+        <HashtagIcon className="marker" />
+        <StyledSkillsListDetailed>
+          <li>CSS</li>
+          <li>SASS</li>
+          <li>Styled Components</li>
+        </StyledSkillsListDetailed>
+      </StyledSkillsPart>
+      <StyledSkillsPart $type={SVGType.BIG} $color="#d62222">
+        <Cog8ToothIcon className="marker" />
+        <StyledSkillsListDetailed>
+          <li>Jest</li>
+          <li>React Testing Library</li>
+        </StyledSkillsListDetailed>
+      </StyledSkillsPart>
+    </StyledSkills>
   );
 }
 

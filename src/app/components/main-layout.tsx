@@ -21,7 +21,7 @@ const StyledLayout = styled('div')`
   }
 
   @media ${ScreenSize.LAPTOPS} {
-    width: 70vw;
+    width: 80vw;
   }
 `;
 
@@ -33,9 +33,9 @@ const StyledMain = styled('div')`
   background-color: #1c1e1f;
   padding: 1rem;
   overflow: auto;
-  gap: 1rem;
+  gap: 0.5rem;
   color: white;
-  order: 2;
+  position: relative;
 
   hr {
     width: 50%;
@@ -43,7 +43,6 @@ const StyledMain = styled('div')`
 
   @media ${ScreenSize.TABLET} {
     height: 90%;
-    order: 3;
   }
 `;
 

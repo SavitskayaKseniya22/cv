@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-
 'use client';
 
 import React from 'react';
@@ -26,6 +24,10 @@ const StyledHeader = styled('header')`
     flex-direction: column;
     height: 60%;
   }
+
+  @media ${ScreenSize.LAPTOPL} {
+    padding: 1.25rem;
+  }
 `;
 
 const StyledNavigation = styled('ul')`
@@ -37,8 +39,11 @@ const StyledNavigation = styled('ul')`
 
   @media ${ScreenSize.TABLET} {
     flex-direction: column;
-    font-size: 1rem;
     justify-content: center;
+  }
+
+  @media ${ScreenSize.LAPTOPL} {
+    gap: 1.25rem;
   }
 `;
 
@@ -51,16 +56,19 @@ const StyledNavigationItem = styled('li')`
   }
 
   @media ${ScreenSize.LAPTOPS} {
-    width: 100%;
-    display: flex;
     justify-content: flex-start;
-    align-items: center;
   }
 `;
 
 const StyledNavigationLink = styled(Link)`
-  &.active {
+  &.navigation-link_active {
     color: #d62222;
+  }
+
+  &.navigation-link_resume {
+    svg {
+      color: #d62222;
+    }
   }
 
   span {
@@ -98,7 +106,7 @@ function Header() {
           <StyledNavigationLink
             href="/"
             title="About Me"
-            className={`${pathname === '/' ? 'active' : ''}`}
+            className={`${pathname === '/' ? 'navigation-link_active' : ''}`}
           >
             <UserIcon />
             <span>About Me</span>
@@ -108,7 +116,9 @@ function Header() {
           <StyledNavigationLink
             href="/portfolio"
             title="Potfolio"
-            className={`${/^\/portfolio*/.test(pathname) ? 'active' : ''}`}
+            className={`${
+              /^\/portfolio*/.test(pathname) ? 'navigation-link_active' : ''
+            }`}
           >
             <FolderIcon />
             <span>Potfolio</span>
@@ -118,7 +128,9 @@ function Header() {
           <StyledNavigationLink
             href="/previous-jobs"
             title="Previous Jobs"
-            className={`${pathname === '/previous-jobs' ? 'active' : ''}`}
+            className={`${
+              pathname === '/previous-jobs' ? 'navigation-link_active' : ''
+            }`}
           >
             <BriefcaseIcon />
             <span>Previous Jobs</span>
@@ -128,7 +140,9 @@ function Header() {
           <StyledNavigationLink
             href="/contacts"
             title="Contacts"
-            className={`${pathname === '/contacts' ? 'active' : ''}`}
+            className={`${
+              pathname === '/contacts' ? 'navigation-link_active' : ''
+            }`}
           >
             <ChatBubbleLeftIcon />
             <span>Contacts</span>
@@ -136,12 +150,18 @@ function Header() {
         </StyledNavigationItem>
         <StyledNavigationItem>
           <StyledNavigationLink
-            href="/resume"
-            title="Resume"
-            className={`${pathname === '/resume' ? 'active' : ''}`}
+            href="/cv.pdf"
+            target="_blank"
+            download="nnn"
+            title="Get CV"
+            className={`${
+              pathname === '/resume'
+                ? 'navigation-link_active navigation-link_resume'
+                : 'navigation-link_resume'
+            }`}
           >
             <FolderArrowDownIcon />
-            <span>Resume</span>
+            <span>Get CV</span>
           </StyledNavigationLink>
         </StyledNavigationItem>
       </StyledNavigation>

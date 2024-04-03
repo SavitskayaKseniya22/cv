@@ -2,9 +2,20 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 14px;
+
+  @media (min-width: 1280px) {
+    font-size: 16px;
+  }
+  @media (min-width: 1920px) {
+    font-size: 18px;
+  }
+}
+
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100svw;
+  height: 100svh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +45,7 @@ button {
   font-family: inherit;
   font-size: inherit;
   line-height: 1;
+  color: inherit;
 }
 
 a {

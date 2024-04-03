@@ -1,12 +1,9 @@
 'use client';
 
-import { ProjectType, ScreenSize } from '@/app/interfaces';
+import { ProjectType } from '@/app/interfaces';
 import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-
-const imageLoader = ({ src }: { src: string }) =>
-  `https://raw.githubusercontent.com/SavitskayaKseniya22/projects-photos/main/photos/museum/features/${src}.png`;
 
 export const StyledFeaturesList = styled('ul')`
   display: flex;
@@ -15,6 +12,7 @@ export const StyledFeaturesList = styled('ul')`
   justify-content: center;
   align-items: center;
   margin: auto 0;
+  flex-grow: 2;
 
   li {
     display: flex;
@@ -32,30 +30,50 @@ export const StyledFeaturesList = styled('ul')`
     }
 
     img {
-      opacity: 0.4;
-    }
-
-    @media ${ScreenSize.LAPTOPS} {
-      width: 200px;
-      height: 200px;
-    }
-
-    @media ${ScreenSize.LAPTOPM} {
-      width: 250px;
-      height: 250px;
+      opacity: 0.2;
     }
   }
 `;
 
-function FeaturesList({ data }: { data: ProjectType }) {
+export const StyledFeature = styled('li')`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  object-fit: contain;
+  text-align: center;
+  padding: 1rem;
+
+  h3 {
+    z-index: 11;
+  }
+
+  img {
+    opacity: 0.2;
+  }
+`;
+
+function FeaturesList({ data, title }: { data: ProjectType; title: string }) {
   return (
     <StyledFeaturesList>
-      {data.features.map((feature) => (
-        <li key={feature}>
-          <h3>{feature}</h3>
-          <Image src={feature} alt={feature} loader={imageLoader} fill />
-        </li>
-      ))}
+      {data.features && data.features.length ? (
+        data.features.map((feature) => (
+          <StyledFeature key={feature}>
+            <h3>{feature}</h3>
+            <Image
+              src={`https://raw.githubusercontent.com/SavitskayaKseniya22/projects-photos/main/photos/${title}/features/${feature}.png`}
+              alt={feature}
+              fill
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mOU+w8AAUEBH2QH9c4AAAAASUVORK5CYII="
+            />
+          </StyledFeature>
+        ))
+      ) : (
+        <StyledFeature key="no-features">No features found</StyledFeature>
+      )}
     </StyledFeaturesList>
   );
 }

@@ -1,37 +1,18 @@
 'use client';
 
-import React, { useEffect, useReducer, useState } from 'react';
-import styled from 'styled-components';
-import { ProjectType, ScreenSize } from '@/app/interfaces';
 import InstrumentsList from '@/components/instruments-list';
+import React, { useReducer, useState, useEffect } from 'react';
+import { ProjectType } from '../interfaces';
+import Instrument from './components/Instrument';
 import {
   reducer,
   portfolioInitialState,
   PortfolioActionKind,
   SortType,
-} from './components/portfolioReducer';
-import Instrument from './components/Instrument';
-import Project from './components/Project';
-import SortButton from './components/SortButton';
-
-export const StyledProjectsList = styled('ul')`
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: auto 0;
-
-  @media ${ScreenSize.TABLET} {
-    gap: 1rem;
-  }
-
-  @media ${ScreenSize.LAPTOPL} {
-    gap: 1.5rem;
-  }
-`;
+} from './components/portfolio-reducer';
+import Project from './components/project';
+import SortButton from './components/sort-button';
+import ProjectsList from './components/project-list';
 
 function Portfolio() {
   const [projects, dispatch] = useReducer(reducer, portfolioInitialState);
@@ -43,7 +24,10 @@ function Portfolio() {
     )
       .then((res) => res.json())
       .then((data: ProjectType[]) => {
-        dispatch({ type: PortfolioActionKind.SET, payload: data });
+        dispatch({
+          type: PortfolioActionKind.SET,
+          payload: data.filter((item) => item.isItReady),
+        });
         setLoading(false);
       })
       .catch((e) => {
@@ -78,11 +62,11 @@ function Portfolio() {
 
       <hr />
 
-      <StyledProjectsList>
+      <ProjectsList>
         {projects.projects.sorted.map((project) => (
           <Project key={project.name} data={project} />
         ))}
-      </StyledProjectsList>
+      </ProjectsList>
 
       <SortButton
         sort={projects.sort}
