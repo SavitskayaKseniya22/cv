@@ -1,14 +1,14 @@
 'use client';
 
+import { StyledMainContent } from '@/app/components/main-layout';
 import { ProjectType, ScreenSize } from '@/app/interfaces';
+import { ArrowUpOnSquareStackIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import InstrumentsList from '@/components/instruments-list';
 import styled from 'styled-components';
-import { ArrowUpOnSquareStackIcon } from '@heroicons/react/24/outline';
-import Complexity from '@/components/complexity';
-import { StyledMainContent } from '@/app/components/main-layout';
+import Complexity from '../components/complexity';
+import ToolsList from '../components/tools/tools-list';
 import FeaturesList from './components/features-list';
 import GithubLink from './components/github-link';
 
@@ -93,7 +93,7 @@ function PortfolioItem() {
       </StyledPortfolioItem>
 
       <p>{loadedData.description}</p>
-      <InstrumentsList instruments={loadedData.instruments} />
+      <ToolsList tools={loadedData.instruments} />
       <FeaturesList data={loadedData} title={params.folderName as string} />
     </StyledMainContent>
   );

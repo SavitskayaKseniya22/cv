@@ -5,7 +5,7 @@ import { ProjectType, ScreenSize } from '@/app/interfaces';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Complexity from '@/components/complexity';
+import Complexity from '../complexity';
 
 const imageLoader = ({ src }: { src: string }) => src;
 
@@ -32,7 +32,6 @@ const StyledProject = styled('li')`
       filter: grayscale(80%) opacity(20%);
       transition: transform 1s, filter 1s;
     }
-
     &:hover {
       img {
         filter: grayscale(60%) opacity(40%);

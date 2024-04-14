@@ -1,6 +1,5 @@
 'use client';
 
-import InstrumentsList from '@/components/instruments-list';
 import React, { useReducer, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ProjectType } from '../interfaces';
@@ -11,8 +10,10 @@ import {
   SortType,
 } from './components/portfolio-reducer';
 import SortButton from './components/sort-button';
-import ProjectsList from './components/project-list';
+
 import { StyledMainContent } from '../components/main-layout';
+import ProjectsList from './components/projects/project-list';
+import ToolsList from './components/tools/tools-list';
 
 const StyledPortfolio = styled(StyledMainContent)`
   .portfolio_header {
@@ -68,8 +69,8 @@ function Portfolio() {
         <>
           <ProjectsList projects={porfolioData.projects.sorted} />
 
-          <InstrumentsList
-            instruments={porfolioData.instruments.source}
+          <ToolsList
+            tools={porfolioData.instruments.source}
             updateList={(item: string) => {
               dispatch({
                 type: PortfolioActionKind.SELECTANDSORT,

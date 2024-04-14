@@ -1,11 +1,11 @@
 import React from 'react';
-import StyledComponentsRegistry from '@/components/registry';
 import { Jura } from 'next/font/google';
 import MainLayout from './components/main-layout';
 import 'normalize.css/normalize.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './globals.scss';
 import Status from './components/status';
+import StyledComponentsRegistry from './components/registry';
 
 const inter = Jura({
   subsets: ['latin'],

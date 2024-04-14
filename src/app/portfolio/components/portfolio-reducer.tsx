@@ -19,7 +19,7 @@ export type PortfolioAction =
   | { type: PortfolioActionKind.SELECTANDSORT; payload: string }
   | { type: PortfolioActionKind.SORT; payload: SortType };
 
-export type InstrumentsType = {
+export type ProjectsType = {
   projects: {
     source: ProjectType[];
     sorted: ProjectType[];
@@ -48,9 +48,9 @@ export function sortByDate(array: ProjectType[], type: SortType) {
 }
 
 export function reducer(
-  state: InstrumentsType,
+  state: ProjectsType,
   action: PortfolioAction
-): InstrumentsType {
+): ProjectsType {
   const { type, payload } = action;
 
   switch (type) {

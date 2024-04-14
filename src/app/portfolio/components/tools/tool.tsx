@@ -12,7 +12,7 @@ const StyledInstrument = styled('li')<{ $selected: boolean }>`
   color: ${(props) => (props.$selected ? '#d62222' : 'white')};
 `;
 
-function Instrument({
+function Tool({
   onClick,
   source,
 }: {
@@ -36,8 +36,8 @@ function Instrument({
   );
 }
 
-Instrument.defaultProps = {
+Tool.defaultProps = {
   onClick: () => {},
 };
 
-export default Instrument;
+export default Tool;
