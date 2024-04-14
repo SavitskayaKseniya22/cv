@@ -9,7 +9,7 @@ import Complexity from '@/components/complexity';
 
 const imageLoader = ({ src }: { src: string }) => src;
 
-export const StyledProject = styled('li')`
+const StyledProject = styled('li')`
   a {
     display: flex;
     align-items: center;
@@ -29,7 +29,7 @@ export const StyledProject = styled('li')`
 
     img {
       z-index: -1;
-      filter: grayscale(90%) opacity(20%);
+      filter: grayscale(80%) opacity(20%);
       transition: transform 1s, filter 1s;
     }
 
@@ -54,6 +54,8 @@ function Project({ data }: { data: ProjectType }) {
           loader={imageLoader}
           alt={data.name}
           unoptimized
+          placeholder="blur"
+          blurDataURL='"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8pqT0HwAFCwIbEaevOQAAAABJRU5ErkJggg=="'
         />
         <Complexity
           complexity={data.complexity}

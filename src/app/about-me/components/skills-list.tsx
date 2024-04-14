@@ -7,25 +7,32 @@ import {
   Cog8ToothIcon,
   HashtagIcon,
 } from '@heroicons/react/24/outline';
-import { SVGType, ScreenSize } from '@/app/interfaces';
-import { StyledLiWithMarker } from '@/components/styled-components';
+import { ScreenSize } from '@/app/interfaces';
 
 const StyledSkills = styled('ul')`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 0.5rem;
+  align-items: center;
 `;
 
-const StyledSkillsPart = styled(StyledLiWithMarker)<{
-  $type: SVGType;
-  $color: string;
-}>`
+const StyledSkillsPart = styled('li')`
   display: flex;
   align-items: center;
-
   flex-direction: column;
 
+  gap: 0.5rem;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    color: #d62222;
+    flex-shrink: 0;
+  }
+
   @media ${ScreenSize.TABLET} {
+    gap: 1.5rem;
     flex-direction: row;
   }
 `;
@@ -37,7 +44,6 @@ const StyledSkillsListDetailed = styled('ul')`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  width: 70%;
 
   @media ${ScreenSize.TABLET} {
     width: unset;
@@ -47,16 +53,15 @@ const StyledSkillsListDetailed = styled('ul')`
 function SkillsList() {
   return (
     <StyledSkills>
-      <StyledSkillsPart $type={SVGType.BIG} $color="#d62222">
+      <StyledSkillsPart>
         <CodeBracketIcon className="marker" />
         <StyledSkillsListDetailed>
           <li>JavaScript</li>
           <li>TypeScript</li>
           <li>React</li>
-          <li>Next.js</li>
         </StyledSkillsListDetailed>
       </StyledSkillsPart>
-      <StyledSkillsPart $type={SVGType.BIG} $color="#d62222">
+      <StyledSkillsPart>
         <HashtagIcon className="marker" />
         <StyledSkillsListDetailed>
           <li>CSS</li>
@@ -64,7 +69,7 @@ function SkillsList() {
           <li>Styled Components</li>
         </StyledSkillsListDetailed>
       </StyledSkillsPart>
-      <StyledSkillsPart $type={SVGType.BIG} $color="#d62222">
+      <StyledSkillsPart>
         <Cog8ToothIcon className="marker" />
         <StyledSkillsListDetailed>
           <li>Jest</li>

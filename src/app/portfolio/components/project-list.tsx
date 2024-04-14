@@ -1,9 +1,9 @@
-import { ScreenSize } from '@/app/interfaces';
-import { StyledInstrumentsList } from '@/components/instruments-list';
-import React, { ReactNode } from 'react';
+import { ProjectType, ScreenSize } from '@/app/interfaces';
+import React from 'react';
 import styled from 'styled-components';
+import Project from './project';
 
-export const StyledProjectsList = styled('ul')`
+const StyledProjectsList = styled('ul')`
   display: flex;
   gap: 0.5rem;
   justify-content: center;
@@ -11,19 +11,24 @@ export const StyledProjectsList = styled('ul')`
   padding: 0.5rem;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: auto 0;
 
   @media ${ScreenSize.TABLET} {
     gap: 1rem;
   }
 
-  @media ${ScreenSize.LAPTOPL} {
+  @media ${ScreenSize.LAPTOPXL} {
     gap: 1.5rem;
   }
 `;
 
-function ProjectsList({ children }: { children: ReactNode }) {
-  return <StyledInstrumentsList>{children}</StyledInstrumentsList>;
+function ProjectsList({ projects }: { projects: ProjectType[] }) {
+  return (
+    <StyledProjectsList>
+      {projects.map((project) => (
+        <Project key={project.name} data={project} />
+      ))}
+    </StyledProjectsList>
+  );
 }
 
 export default ProjectsList;

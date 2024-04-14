@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-export const StyledInstrument = styled('li')<{ $selected: boolean }>`
+const StyledInstrument = styled('li')<{ $selected: boolean }>`
   padding: 0.5rem;
   cursor: pointer;
   display: flex;
@@ -13,11 +13,11 @@ export const StyledInstrument = styled('li')<{ $selected: boolean }>`
 `;
 
 function Instrument({
-  children,
-  addToClick,
+  onClick,
+  source,
 }: {
-  children: React.ReactNode;
-  addToClick: () => void;
+  source: string;
+  onClick?: (item: string) => void;
 }) {
   const [selected, setSelected] = useState(false);
 
@@ -25,13 +25,19 @@ function Instrument({
     <StyledInstrument
       $selected={selected}
       onClick={() => {
-        setSelected((a) => !a);
-        addToClick();
+        if (onClick) {
+          setSelected((a) => !a);
+          onClick(source);
+        }
       }}
     >
-      {children}
+      {source}
     </StyledInstrument>
   );
 }
+
+Instrument.defaultProps = {
+  onClick: () => {},
+};
 
 export default Instrument;

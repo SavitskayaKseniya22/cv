@@ -6,15 +6,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { SortType } from './portfolio-reducer';
 
-export const StyledSortButton = styled('button')`
+const StyledSortButton = styled('button')`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   color: white;
-  align-self: flex-end;
   transition: all 1s ease-out;
-  order: 6;
+
   svg {
     width: 2rem;
     height: 2rem;

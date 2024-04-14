@@ -5,42 +5,20 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-export const StyledFeaturesList = styled('ul')`
-  display: flex;
+const StyledFeaturesList = styled('ul')`
+  display: grid;
   gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin: auto 0;
   flex-grow: 2;
-
-  li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 150px;
-    position: relative;
-    object-fit: contain;
-    text-align: center;
-    padding: 1rem;
-
-    h3 {
-      z-index: 11;
-    }
-
-    img {
-      opacity: 0.2;
-    }
-  }
+  grid-template-columns: repeat(auto-fill, 200px);
+  grid-auto-rows: 200px;
+  padding: 1rem;
+  place-content: center;
 `;
 
-export const StyledFeature = styled('li')`
+const StyledFeature = styled('li')`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 150px;
   position: relative;
   object-fit: contain;
   text-align: center;
@@ -68,6 +46,7 @@ function FeaturesList({ data, title }: { data: ProjectType; title: string }) {
               fill
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mOU+w8AAUEBH2QH9c4AAAAASUVORK5CYII="
+              objectFit="contain"
             />
           </StyledFeature>
         ))

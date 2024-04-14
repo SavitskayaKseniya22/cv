@@ -21,9 +21,3 @@ export type ProjectType = {
   murkup?: string[];
   isItReady: boolean;
 };
-
-export const enum SVGType {
-  BIG,
-  MIDDLE,
-  SMALL,
-}

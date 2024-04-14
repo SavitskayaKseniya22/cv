@@ -10,39 +10,53 @@ const StyledLayout = styled('div')`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
 
   @media ${ScreenSize.TABLET} {
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 90vw;
-    height: 90vh;
+    height: 95vh;
   }
 
   @media ${ScreenSize.LAPTOPS} {
-    width: 80vw;
+    width: 70vw;
+  }
+
+  @media ${ScreenSize.LAPTOPXL} {
+    width: 60vw;
   }
 `;
 
-const StyledMain = styled('div')`
+const StyledMain = styled('main')`
+  background-color: #1c1e1f;
+  flex-grow: 5;
+  overflow: auto;
+  display: flex;
+
+  @media ${ScreenSize.TABLET} {
+    height: 95%;
+  }
+
+  @media ${ScreenSize.LAPTOPXL} {
+    height: 75%;
+  }
+`;
+
+export const StyledMainContent = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 5;
-  background-color: #1c1e1f;
   padding: 1rem;
-  overflow: auto;
-  gap: 0.5rem;
+  gap: 1rem;
   color: white;
   position: relative;
+  overflow: auto;
+  width: 100%;
 
   hr {
     width: 50%;
-  }
-
-  @media ${ScreenSize.TABLET} {
-    height: 90%;
   }
 `;
 

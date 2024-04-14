@@ -9,31 +9,19 @@ const StyledBioContent = styled('div')`
   display: flex;
   gap: 1rem;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   flex-grow: 2;
 
-  @media ${ScreenSize.TABLET} {
+  @media ${ScreenSize.LAPTOPS} {
     gap: 2rem;
     flex-direction: row;
-  }
-
-  img {
-    width: 150px;
-    height: auto;
-
-    @media ${ScreenSize.LAPTOPL} {
-      width: auto;
-    }
   }
 `;
 
 const StyledBioImage = styled(Image)`
-  width: 150px;
+  width: auto;
   height: auto;
-
-  @media ${ScreenSize.LAPTOPL} {
-    width: auto;
-  }
 `;
 
 function Bio() {

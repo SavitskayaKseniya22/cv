@@ -2,20 +2,29 @@
 
 import InstrumentsList from '@/components/instruments-list';
 import React, { useReducer, useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { ProjectType } from '../interfaces';
-import Instrument from './components/Instrument';
 import {
   reducer,
   portfolioInitialState,
   PortfolioActionKind,
   SortType,
 } from './components/portfolio-reducer';
-import Project from './components/project';
 import SortButton from './components/sort-button';
 import ProjectsList from './components/project-list';
+import { StyledMainContent } from '../components/main-layout';
+
+const StyledPortfolio = styled(StyledMainContent)`
+  .portfolio_header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+  }
+`;
 
 function Portfolio() {
-  const [projects, dispatch] = useReducer(reducer, portfolioInitialState);
+  const [porfolioData, dispatch] = useReducer(reducer, portfolioInitialState);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,50 +44,42 @@ function Portfolio() {
       });
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!projects) return <p>No portfolio data</p>;
-
   return (
-    <>
-      <h1>Portfolio</h1>
+    <StyledPortfolio>
+      <div className="portfolio_header">
+        <h1>Portfolio</h1>
+        <SortButton
+          sort={porfolioData.sort}
+          onClick={() => {
+            dispatch({
+              type: PortfolioActionKind.SORT,
+              payload:
+                porfolioData.sort === SortType.DOWN
+                  ? SortType.UP
+                  : SortType.DOWN,
+            });
+          }}
+        />
+      </div>
 
-      <hr />
+      {isLoading && <p>Loading...</p>}
+      {!porfolioData && !isLoading && <p>No portfolio data</p>}
+      {porfolioData && (
+        <>
+          <ProjectsList projects={porfolioData.projects.sorted} />
 
-      <InstrumentsList>
-        {projects.instruments.source.map((item) => (
-          <Instrument
-            key={item}
-            addToClick={() => {
+          <InstrumentsList
+            instruments={porfolioData.instruments.source}
+            updateList={(item: string) => {
               dispatch({
                 type: PortfolioActionKind.SELECTANDSORT,
                 payload: item,
               });
             }}
-          >
-            {item}
-          </Instrument>
-        ))}
-      </InstrumentsList>
-
-      <hr />
-
-      <ProjectsList>
-        {projects.projects.sorted.map((project) => (
-          <Project key={project.name} data={project} />
-        ))}
-      </ProjectsList>
-
-      <SortButton
-        sort={projects.sort}
-        onClick={() => {
-          dispatch({
-            type: PortfolioActionKind.SORT,
-            payload:
-              projects.sort === SortType.DOWN ? SortType.UP : SortType.DOWN,
-          });
-        }}
-      />
-    </>
+          />
+        </>
+      )}
+    </StyledPortfolio>
   );
 }
 

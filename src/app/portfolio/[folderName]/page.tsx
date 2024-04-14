@@ -8,6 +8,7 @@ import InstrumentsList from '@/components/instruments-list';
 import styled from 'styled-components';
 import { ArrowUpOnSquareStackIcon } from '@heroicons/react/24/outline';
 import Complexity from '@/components/complexity';
+import { StyledMainContent } from '@/app/components/main-layout';
 import FeaturesList from './components/features-list';
 import GithubLink from './components/github-link';
 
@@ -18,12 +19,12 @@ const StyledButtonList = styled('div')`
   a {
     color: white;
     display: block;
-
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
     position: relative;
+
     svg {
       width: 2rem;
       height: 2rem;
@@ -38,16 +39,10 @@ const StyledPortfolioItem = styled('div')`
   flex-direction: column;
   column-gap: 2rem;
   row-gap: 1rem;
+  flex-wrap: wrap;
 
   @media ${ScreenSize.TABLET} {
     flex-direction: row;
-  }
-`;
-
-const StyledH1 = styled('h1')`
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
   }
 `;
 
@@ -82,40 +77,25 @@ function PortfolioItem() {
   if (!loadedData) return <>No portfolio data</>;
 
   return (
-    <>
-      <StyledH1>{loadedData.name}</StyledH1>
-
-      <hr />
-
+    <StyledMainContent>
       <StyledPortfolioItem>
-        <p>{loadedData.description}</p>
-
+        <h1>{loadedData.name}</h1>
         <StyledButtonList>
           <Link href={loadedData.deploy} target="_blank">
             <ArrowUpOnSquareStackIcon />
           </Link>
           <GithubLink href={loadedData.github} />
+          <Complexity
+            complexity={loadedData.complexity}
+            className="complexity_in-project"
+          />
         </StyledButtonList>
       </StyledPortfolioItem>
 
-      <hr />
-
-      <InstrumentsList>
-        {loadedData.instruments.map((instrument) => (
-          <li key={instrument}>{instrument}</li>
-        ))}
-      </InstrumentsList>
-
-      <hr />
-
+      <p>{loadedData.description}</p>
+      <InstrumentsList instruments={loadedData.instruments} />
       <FeaturesList data={loadedData} title={params.folderName as string} />
-      <Complexity
-        complexity={loadedData.complexity}
-        className="complexity_in-project"
-      />
-
-      <p>{`${loadedData.date[0]} - ${loadedData.date[1]}`}</p>
-    </>
+    </StyledMainContent>
   );
 }
 

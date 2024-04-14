@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-
 import {
   UserIcon,
   ChatBubbleLeftIcon,
@@ -126,14 +125,14 @@ function Header() {
         </StyledNavigationItem>
         <StyledNavigationItem>
           <StyledNavigationLink
-            href="/previous-jobs"
-            title="Previous Jobs"
+            href="/occupations"
+            title="Occupation"
             className={`${
-              pathname === '/previous-jobs' ? 'navigation-link_active' : ''
+              pathname === '/occupations' ? 'navigation-link_active' : ''
             }`}
           >
             <BriefcaseIcon />
-            <span>Previous Jobs</span>
+            <span>Occupations</span>
           </StyledNavigationLink>
         </StyledNavigationItem>
         <StyledNavigationItem>
@@ -150,9 +149,9 @@ function Header() {
         </StyledNavigationItem>
         <StyledNavigationItem>
           <StyledNavigationLink
-            href="/cv.pdf"
+            href="/CV_Savitskaia.pdf"
             target="_blank"
-            download="nnn"
+            download="CV_Savitskaia"
             title="Get CV"
             className={`${
               pathname === '/resume'
