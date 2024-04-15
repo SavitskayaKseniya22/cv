@@ -20,7 +20,6 @@ const StyledProject = styled('li')`
     overflow: hidden;
     width: 120px;
     height: 120px;
-    color: tan;
 
     @media ${ScreenSize.LAPTOPM} {
       width: 150px;
@@ -32,6 +31,7 @@ const StyledProject = styled('li')`
       filter: grayscale(80%) opacity(20%);
       transition: transform 1s, filter 1s;
     }
+
     &:hover {
       img {
         filter: grayscale(60%) opacity(40%);

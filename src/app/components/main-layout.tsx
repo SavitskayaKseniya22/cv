@@ -16,7 +16,6 @@ const StyledLayout = styled('div')`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 90vw;
     height: 95vh;
   }
 
@@ -30,7 +29,6 @@ const StyledLayout = styled('div')`
 `;
 
 const StyledMain = styled('main')`
-  background-color: #1c1e1f;
   flex-grow: 5;
   overflow: auto;
   display: flex;
@@ -50,14 +48,9 @@ export const StyledMainContent = styled('div')`
   justify-content: space-between;
   padding: 1rem;
   gap: 1rem;
-  color: white;
   position: relative;
   overflow: auto;
   width: 100%;
-
-  hr {
-    width: 50%;
-  }
 `;
 
 function MainLayout({ children }: { children: React.ReactNode }) {

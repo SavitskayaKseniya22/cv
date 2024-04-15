@@ -8,11 +8,12 @@ const StyledStatus = styled('div')`
   display: none;
 
   @media ${ScreenSize.TABLET} {
-    display: block;
+    display: flex;
+    align-items: center;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    color: white;
+    top: 0.5rem;
+    right: 2rem;
+    gap: 1rem;
   }
 `;
 
@@ -37,7 +38,8 @@ const StyledStatusLine = styled('span')`
 export default function Status() {
   return (
     <StyledStatus>
-      Status: <StyledStatusLine>Looking for a job</StyledStatusLine>
+      <h4>Status:</h4>
+      <StyledStatusLine>Looking for a job</StyledStatusLine>
     </StyledStatus>
   );
 }

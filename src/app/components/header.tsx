@@ -15,8 +15,6 @@ import { usePathname } from 'next/navigation';
 
 const StyledHeader = styled('header')`
   display: flex;
-  background-color: #1c1e1f;
-  color: white;
   padding: 1rem;
 
   @media ${ScreenSize.TABLET} {
@@ -34,7 +32,7 @@ const StyledNavigation = styled('ul')`
   justify-content: space-evenly;
   align-items: center;
   gap: 1rem;
-  flex-grow: 2;
+  flex-grow: 1;
 
   @media ${ScreenSize.TABLET} {
     flex-direction: column;
@@ -44,53 +42,33 @@ const StyledNavigation = styled('ul')`
   @media ${ScreenSize.LAPTOPL} {
     gap: 1.25rem;
   }
-`;
 
-const StyledNavigationItem = styled('li')`
-  @media ${ScreenSize.TABLET} {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media ${ScreenSize.LAPTOPS} {
-    justify-content: flex-start;
-  }
-`;
-
-const StyledNavigationLink = styled(Link)`
-  &.navigation-link_active {
-    color: #d62222;
-  }
-
-  &.navigation-link_resume {
-    svg {
-      color: #d62222;
+  .navigation-item {
+    @media ${ScreenSize.TABLET} {
+      width: 100%;
+      justify-content: flex-start;
     }
-  }
 
-  span {
-    display: none;
-  }
+    .navigation-item-link {
+      &.navigation-item-link_active {
+        color: #d62222;
+      }
 
-  svg {
-    width: 2rem;
-    height: 2rem;
-    flex-shrink: 0;
-  }
+      @media ${ScreenSize.TABLET} {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+      }
 
-  @media ${ScreenSize.TABLET} {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;
-  }
+      .navigation-item-link-text {
+        display: none;
 
-  @media ${ScreenSize.LAPTOPL} {
-    span {
-      display: inline;
-      white-space: nowrap;
+        @media ${ScreenSize.LAPTOPL} {
+          display: inline;
+          white-space: nowrap;
+        }
+      }
     }
   }
 `;
@@ -101,68 +79,68 @@ function Header() {
   return (
     <StyledHeader>
       <StyledNavigation>
-        <StyledNavigationItem>
-          <StyledNavigationLink
+        <li className="navigation-item">
+          <Link
             href="/"
             title="About Me"
-            className={`${pathname === '/' ? 'navigation-link_active' : ''}`}
+            className={`navigation-item-link ${
+              pathname === '/' ? 'navigation-item-link_active' : ''
+            }`}
           >
-            <UserIcon />
-            <span>About Me</span>
-          </StyledNavigationLink>
-        </StyledNavigationItem>
-        <StyledNavigationItem>
-          <StyledNavigationLink
+            <UserIcon className="styled-svg styled-svg_big" />
+            <span className="navigation-item-link-text">About Me</span>
+          </Link>
+        </li>
+        <li className="navigation-item">
+          <Link
             href="/portfolio"
             title="Potfolio"
-            className={`${
-              /^\/portfolio*/.test(pathname) ? 'navigation-link_active' : ''
+            className={`navigation-item-link ${
+              /^\/portfolio*/.test(pathname)
+                ? 'navigation-item-link_active'
+                : ''
             }`}
           >
-            <FolderIcon />
-            <span>Potfolio</span>
-          </StyledNavigationLink>
-        </StyledNavigationItem>
-        <StyledNavigationItem>
-          <StyledNavigationLink
+            <FolderIcon className="styled-svg styled-svg_big" />
+            <span className="navigation-item-link-text">Potfolio</span>
+          </Link>
+        </li>
+        <li className="navigation-item">
+          <Link
             href="/occupations"
             title="Occupation"
-            className={`${
-              pathname === '/occupations' ? 'navigation-link_active' : ''
+            className={`navigation-item-link ${
+              pathname === '/occupations' ? 'navigation-item-link_active' : ''
             }`}
           >
-            <BriefcaseIcon />
-            <span>Occupations</span>
-          </StyledNavigationLink>
-        </StyledNavigationItem>
-        <StyledNavigationItem>
-          <StyledNavigationLink
+            <BriefcaseIcon className="styled-svg styled-svg_big" />
+            <span className="navigation-item-link-text">Occupations</span>
+          </Link>
+        </li>
+        <li className="navigation-item">
+          <Link
             href="/contacts"
             title="Contacts"
-            className={`${
-              pathname === '/contacts' ? 'navigation-link_active' : ''
+            className={`navigation-item-link ${
+              pathname === '/contacts' ? 'navigation-item-link_active' : ''
             }`}
           >
-            <ChatBubbleLeftIcon />
-            <span>Contacts</span>
-          </StyledNavigationLink>
-        </StyledNavigationItem>
-        <StyledNavigationItem>
-          <StyledNavigationLink
+            <ChatBubbleLeftIcon className="styled-svg styled-svg_big" />
+            <span className="navigation-item-link-text">Contacts</span>
+          </Link>
+        </li>
+        <li className="navigation-item">
+          <Link
             href="/CV_Savitskaia.pdf"
             target="_blank"
             download="CV_Savitskaia"
             title="Get CV"
-            className={`${
-              pathname === '/resume'
-                ? 'navigation-link_active navigation-link_resume'
-                : 'navigation-link_resume'
-            }`}
+            className="navigation-item-link"
           >
-            <FolderArrowDownIcon />
-            <span>Get CV</span>
-          </StyledNavigationLink>
-        </StyledNavigationItem>
+            <FolderArrowDownIcon className="styled-svg styled-svg_big styled-svg_red" />
+            <span className="navigation-item-link-text">Get CV</span>
+          </Link>
+        </li>
       </StyledNavigation>
     </StyledHeader>
   );

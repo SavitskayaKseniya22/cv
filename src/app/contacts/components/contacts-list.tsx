@@ -12,35 +12,28 @@ const StyledContactList = styled('ul')`
   align-items: center;
   flex-wrap: wrap;
 
-  & > li {
+  .contacts-item {
     display: flex;
     align-items: center;
     gap: 1rem;
-
-    svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: #d62222;
-      flex-shrink: 0;
-    }
   }
 `;
 
 function ContactsList() {
   return (
     <StyledContactList>
-      <li>
-        <AtSymbolIcon className="marker" />
+      <li className="contacts-item">
+        <AtSymbolIcon className="styled-svg styled-svg_medium styled-svg_red" />
         <Link href="mailto:kseniia.savitskaia@gmail.com">
           kseniia.savitskaia@gmail.com
         </Link>
       </li>
-      <li>
-        <PhoneIcon className="marker" />
+      <li className="contacts-item">
+        <PhoneIcon className="styled-svg styled-svg_medium styled-svg_red" />
         <Link href="tel:+79520056415">+7-952-005-64-15</Link>
       </li>
-      <li>
-        <PhoneIcon className="marker" />
+      <li className="contacts-item">
+        <PhoneIcon className="styled-svg styled-svg_medium styled-svg_red" />
         <Link href="tel:+359876032638">+359-876-032-638</Link>
       </li>
     </StyledContactList>

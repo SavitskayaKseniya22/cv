@@ -10,11 +10,8 @@ function Contacts() {
   return (
     <StyledMainContent>
       <h1>Contacts</h1>
-
       <ContactsMap />
-      <hr />
       <ContactsList />
-      <hr />
       <ContactsForm />
     </StyledMainContent>
   );

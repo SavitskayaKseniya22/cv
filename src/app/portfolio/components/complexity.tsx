@@ -13,12 +13,9 @@ const StyledComplexity = styled('div')`
   align-items: center;
   justify-content: center;
 
-  svg {
-    color: #d62222;
-  }
-
   &.complexity_in-project {
     font-size: 1.5rem;
+
     svg {
       width: 2rem;
       height: 2rem;
@@ -29,6 +26,7 @@ const StyledComplexity = styled('div')`
     position: absolute;
     bottom: 0.5rem;
     right: 0.5rem;
+
     svg {
       width: 1.5rem;
       height: 1.5rem;
@@ -45,7 +43,7 @@ function Complexity({
 }) {
   return (
     <StyledComplexity title="Complexity" className={className}>
-      <PuzzlePieceIcon />
+      <PuzzlePieceIcon className="styled-svg styled-svg_red styled-svg_medium" />
       {complexity}
     </StyledComplexity>
   );

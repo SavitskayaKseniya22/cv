@@ -11,32 +11,6 @@ const StyledSortButton = styled('button')`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  color: white;
-  transition: all 1s ease-out;
-
-  svg {
-    width: 2rem;
-    height: 2rem;
-    transition: all 1s ease-out;
-
-    &.active {
-      color: #d62222;
-    }
-    &.inactive {
-      color: gray;
-    }
-  }
-
-  &:hover {
-    svg {
-      &.active {
-        color: gray;
-      }
-      &.inactive {
-        color: #d62222;
-      }
-    }
-  }
 `;
 
 function SortButton({
@@ -50,10 +24,14 @@ function SortButton({
     <StyledSortButton type="button" onClick={onClick}>
       Sort by date
       <BarsArrowUpIcon
-        className={sort === SortType.DOWN ? 'active' : 'inactive'}
+        className={`styled-svg styled-svg_big ${
+          sort === SortType.DOWN ? 'styled-svg_red' : 'styled-svg_white'
+        }`}
       />
       <BarsArrowDownIcon
-        className={sort === SortType.UP ? 'active' : 'inactive'}
+        className={`styled-svg styled-svg_big ${
+          sort === SortType.UP ? 'styled-svg_red' : 'styled-svg_white'
+        }`}
       />
     </StyledSortButton>
   );

@@ -8,22 +8,13 @@ import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/24/outline';
 import { StyledMainContent } from '../components/main-layout';
 
 const StyledOccupation = styled(StyledMainContent)`
-  a {
-    color: tan;
-  }
-
-  h2 {
+  .occupation__title {
     display: flex;
     gap: 1rem;
     align-items: center;
-
-    svg {
-      width: 2rem;
-      height: 2rem;
-    }
   }
 
-  & > ul {
+  .occupation__chapter {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -34,14 +25,14 @@ const StyledOccupationItem = styled('li')`
   background-color: rgba(128, 128, 128, 0.1);
   padding: 1rem;
 
-  & > div {
+  .occupation-item_title-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
   }
 
-  ul {
+  .occupation-item_features {
     margin-left: 1rem;
   }
 `;
@@ -51,13 +42,14 @@ function Occupation() {
     <StyledOccupation>
       <h1>Occupation</h1>
 
-      <h2>
-        <AcademicCapIcon /> Education
+      <h2 className="occupation__title">
+        <AcademicCapIcon className="styled-svg styled-svg_big styled-svg_red" />
+        Education
       </h2>
 
-      <ul>
+      <ul className="occupation__chapter">
         <StyledOccupationItem>
-          <div>
+          <div className="occupation-item_title-container">
             <Link href="https://en.altstu.ru/" target="_blank">
               <h3>Altai State Technical University</h3>
             </Link>
@@ -71,14 +63,14 @@ function Occupation() {
           </p>
         </StyledOccupationItem>
         <StyledOccupationItem>
-          <div>
+          <div className="occupation-item_title-container">
             <Link href="https://rs.school/" target="_blank">
               <h3>The Rolling Scopes School</h3>
             </Link>
             <h4>2021-2022</h4>
           </div>
 
-          <ul>
+          <ul className="occupation-item_features">
             <li>
               <Link
                 href="https://app.rs.school/certificate/kk9vy6aa"
@@ -98,14 +90,14 @@ function Occupation() {
           </ul>
         </StyledOccupationItem>
         <StyledOccupationItem>
-          <div>
+          <div className="occupation-item_title-container">
             <Link href="/" target="_blank">
               <h3>FreeCodeCamp</h3>
             </Link>
 
             <h4>2020-2023</h4>
           </div>
-          <ul>
+          <ul className="occupation-item_features">
             <li>
               <h5>Responsive Web Design</h5>
             </li>
@@ -121,7 +113,7 @@ function Occupation() {
           </ul>
         </StyledOccupationItem>
         <StyledOccupationItem>
-          <div>
+          <div className="occupation-item_title-container">
             <h3>
               <Link
                 href="https://www.codewars.com/users/savitskaya.kseniya.22"
@@ -142,13 +134,14 @@ function Occupation() {
         </StyledOccupationItem>
       </ul>
 
-      <h2>
-        <BriefcaseIcon />
+      <h2 className="occupation__title">
+        <BriefcaseIcon className="styled-svg styled-svg_big styled-svg_red" />
         Unrelated work experience
       </h2>
-      <ul>
+
+      <ul className="occupation__chapter">
         <StyledOccupationItem>
-          <div>
+          <div className="occupation-item_title-container">
             <h3>Google</h3>
             <h4>2013</h4>
           </div>
@@ -160,7 +153,7 @@ function Occupation() {
           </p>
         </StyledOccupationItem>
         <StyledOccupationItem>
-          <div>
+          <div className="occupation-item_title-container">
             <Link href="https://quickpay.ru/" target="_blank">
               <h3>Quickpay - payments system</h3>
             </Link>
@@ -172,7 +165,7 @@ function Occupation() {
           <p>Administration and control of the payment process.</p>
         </StyledOccupationItem>
         <StyledOccupationItem>
-          <div>
+          <div className="occupation-item_title-container">
             <h3>Yandex</h3>
             <h4>2016-2022</h4>
           </div>
@@ -183,7 +176,7 @@ function Occupation() {
           </p>
         </StyledOccupationItem>
         <StyledOccupationItem>
-          <div>
+          <div className="occupation-item_title-container">
             <h3>Mail.ru</h3>
             <h4>2018</h4>
           </div>

@@ -5,10 +5,8 @@ import ReactMap, { FullscreenControl, Marker } from 'react-map-gl';
 import styled from 'styled-components';
 
 const StyledMap = styled('div')`
-  width: 100%;
   min-height: 5rem;
-  flex-grow: 22;
-  background-color: blue;
+  flex-grow: 1;
   flex-shrink: 0;
 `;
 

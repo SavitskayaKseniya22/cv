@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import { StyledMainContent } from './components/main-layout';
 
 export default function Error({
   error,
@@ -14,11 +15,11 @@ export default function Error({
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
+    <StyledMainContent>
+      <h1>Something went wrong!</h1>
       <button type="button" onClick={() => reset()}>
         Try again
       </button>
-    </div>
+    </StyledMainContent>
   );
 }

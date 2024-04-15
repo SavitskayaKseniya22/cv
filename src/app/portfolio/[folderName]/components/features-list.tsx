@@ -23,14 +23,6 @@ const StyledFeature = styled('li')`
   object-fit: contain;
   text-align: center;
   padding: 1rem;
-
-  h3 {
-    z-index: 11;
-  }
-
-  img {
-    opacity: 0.2;
-  }
 `;
 
 function FeaturesList({ data, title }: { data: ProjectType; title: string }) {
@@ -47,6 +39,7 @@ function FeaturesList({ data, title }: { data: ProjectType; title: string }) {
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mOU+w8AAUEBH2QH9c4AAAAASUVORK5CYII="
               objectFit="contain"
+              style={{ opacity: 0.2 }}
             />
           </StyledFeature>
         ))

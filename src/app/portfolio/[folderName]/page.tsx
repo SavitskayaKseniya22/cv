@@ -17,18 +17,11 @@ const StyledButtonList = styled('div')`
   gap: 1rem;
 
   a {
-    color: white;
-    display: block;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
     position: relative;
-
-    svg {
-      width: 2rem;
-      height: 2rem;
-    }
   }
 `;
 
@@ -73,28 +66,33 @@ function PortfolioItem() {
       });
   }, [params.folderName]);
 
-  if (isLoading) return <p>Loading...</p>;
   if (!loadedData) return <>No portfolio data</>;
 
   return (
     <StyledMainContent>
-      <StyledPortfolioItem>
-        <h1>{loadedData.name}</h1>
-        <StyledButtonList>
-          <Link href={loadedData.deploy} target="_blank">
-            <ArrowUpOnSquareStackIcon />
-          </Link>
-          <GithubLink href={loadedData.github} />
-          <Complexity
-            complexity={loadedData.complexity}
-            className="complexity_in-project"
-          />
-        </StyledButtonList>
-      </StyledPortfolioItem>
+      {isLoading && <p>Loading...</p>}
+      {!loadedData && !isLoading && <h1>No project data</h1>}
+      {loadedData && (
+        <>
+          <StyledPortfolioItem>
+            <h1>{loadedData.name}</h1>
+            <StyledButtonList>
+              <Link href={loadedData.deploy} target="_blank">
+                <ArrowUpOnSquareStackIcon className="styled-svg styled-svg_big styled-svg_red" />
+              </Link>
+              <GithubLink href={loadedData.github} />
+              <Complexity
+                complexity={loadedData.complexity}
+                className="complexity_in-project"
+              />
+            </StyledButtonList>
+          </StyledPortfolioItem>
 
-      <p>{loadedData.description}</p>
-      <ToolsList tools={loadedData.instruments} />
-      <FeaturesList data={loadedData} title={params.folderName as string} />
+          <p>{loadedData.description}</p>
+          <ToolsList tools={loadedData.instruments} />
+          <FeaturesList data={loadedData} title={params.folderName as string} />
+        </>
+      )}
     </StyledMainContent>
   );
 }

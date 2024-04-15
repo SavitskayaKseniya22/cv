@@ -17,19 +17,11 @@ const StyledSkills = styled('ul')`
   align-items: center;
 `;
 
-const StyledSkillsPart = styled('li')`
+const StyledSkill = styled('li')`
   display: flex;
   align-items: center;
   flex-direction: column;
-
   gap: 0.5rem;
-
-  svg {
-    width: 2rem;
-    height: 2rem;
-    color: #d62222;
-    flex-shrink: 0;
-  }
 
   @media ${ScreenSize.TABLET} {
     gap: 1.5rem;
@@ -37,7 +29,7 @@ const StyledSkillsPart = styled('li')`
   }
 `;
 
-const StyledSkillsListDetailed = styled('ul')`
+const StyledSkillDetailed = styled('ul')`
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -53,29 +45,29 @@ const StyledSkillsListDetailed = styled('ul')`
 function SkillsList() {
   return (
     <StyledSkills>
-      <StyledSkillsPart>
-        <CodeBracketIcon className="marker" />
-        <StyledSkillsListDetailed>
+      <StyledSkill>
+        <CodeBracketIcon className="styled-svg styled-svg_big styled-svg_red" />
+        <StyledSkillDetailed>
           <li>JavaScript</li>
           <li>TypeScript</li>
           <li>React</li>
-        </StyledSkillsListDetailed>
-      </StyledSkillsPart>
-      <StyledSkillsPart>
-        <HashtagIcon className="marker" />
-        <StyledSkillsListDetailed>
+        </StyledSkillDetailed>
+      </StyledSkill>
+      <StyledSkill>
+        <HashtagIcon className="styled-svg styled-svg_big styled-svg_red" />
+        <StyledSkillDetailed>
           <li>CSS</li>
           <li>SASS</li>
           <li>Styled Components</li>
-        </StyledSkillsListDetailed>
-      </StyledSkillsPart>
-      <StyledSkillsPart>
-        <Cog8ToothIcon className="marker" />
-        <StyledSkillsListDetailed>
+        </StyledSkillDetailed>
+      </StyledSkill>
+      <StyledSkill>
+        <Cog8ToothIcon className="styled-svg styled-svg_big styled-svg_red" />
+        <StyledSkillDetailed>
           <li>Jest</li>
           <li>React Testing Library</li>
-        </StyledSkillsListDetailed>
-      </StyledSkillsPart>
+        </StyledSkillDetailed>
+      </StyledSkill>
     </StyledSkills>
   );
 }

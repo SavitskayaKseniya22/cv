@@ -7,7 +7,6 @@ import styled from 'styled-components';
 
 const StyledPerson = styled('div')`
   text-align: center;
-  color: white;
   position: relative;
   display: flex;
   flex-direction: column;
