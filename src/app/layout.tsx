@@ -1,16 +1,9 @@
 import React from "react";
-import { Jura } from "next/font/google";
+
 import MainLayout from "./components/main-layout";
-//import 'normalize.css/normalize.css';
-import "./globals.scss";
+import "../styles/styles.scss";
 import Status from "./components/status";
 import StyledComponentsRegistry from "./components/registry";
-
-const inter = Jura({
-    subsets: ["latin"],
-    style: "normal",
-    weight: ["400", "700"],
-});
 
 export const metadata = {
     title: "CV",
@@ -21,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <StyledComponentsRegistry>
-                <body className={inter.className}>
+                <body>
                     <MainLayout>{children}</MainLayout>
                     <Status />
                 </body>
