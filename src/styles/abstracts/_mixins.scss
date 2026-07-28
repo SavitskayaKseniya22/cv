@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "@abstracts/variables" as vars;
 
 // font-family
@@ -90,4 +91,30 @@
     -webkit-line-clamp: $num;
     line-clamp: $num;
     -webkit-box-orient: vertical;
+}
+
+@mixin main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    overflow: auto;
+}
+
+$breakpoints: (
+    mobile: 320px,
+    tablet: 768px,
+    laptop-s: 1024px,
+    laptop-m: 1280px,
+    laptop-l: 1920px,
+    laptop-xl: 2560px
+);
+
+@mixin media($screen) {
+    @media (min-width: map.get($breakpoints, $screen)) {
+        @content;
+    }
 }

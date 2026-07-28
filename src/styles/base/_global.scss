@@ -22,8 +22,8 @@ body {
     justify-content: center;
     width: 100svw;
     height: 100svh;
-    color: white;
-    background-color: #1c1e1f;
+    color: vars.$color-white;
+    background-color: vars.$color-dark-main;
 }
 
 .styled-svg {

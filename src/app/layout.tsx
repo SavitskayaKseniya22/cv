@@ -1,9 +1,8 @@
 import React from "react";
-
-import MainLayout from "./components/main-layout";
 import "../styles/styles.scss";
-import Status from "./components/status";
-import StyledComponentsRegistry from "./components/registry";
+import styles from "./layout.module.scss";
+import Header from "@/components/header";
+import Person from "@/components/person";
 
 export const metadata = {
     title: "CV",
@@ -13,12 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <StyledComponentsRegistry>
-                <body>
-                    <MainLayout>{children}</MainLayout>
-                    <Status />
-                </body>
-            </StyledComponentsRegistry>
+            <body>
+                <div className={styles.layout}>
+                    <Header />
+                    <Person />
+                    <main className={styles.layout__container}>{children}</main>
+                </div>
+            </body>
         </html>
     );
 }
