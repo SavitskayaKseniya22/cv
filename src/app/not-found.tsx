@@ -1,5 +1,6 @@
 "use client";
 
+import Icon from "@/components/Icon/Icon";
 import ArrowUturnLeftIcon from "@heroicons/react/24/outline/ArrowUturnLeftIcon";
 import { useRouter } from "next/navigation";
 
@@ -9,7 +10,7 @@ function NotFound() {
         <>
             <h1>Not Found</h1>
             <button type="button" onClick={() => router.back()}>
-                <ArrowUturnLeftIcon className="styled-svg styled-svg_big styled-svg_white" />
+                <Icon icon={ArrowUturnLeftIcon} view="normal" />
             </button>
         </>
     );

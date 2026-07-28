@@ -25,30 +25,3 @@ body {
     color: vars.$color-white;
     background-color: vars.$color-dark-main;
 }
-
-.styled-svg {
-    flex-shrink: 0;
-
-    &.styled-svg_big {
-        width: 2rem;
-        height: 2rem;
-    }
-
-    &.styled-svg_medium {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-    &.styled-svg_small {
-        width: 1rem;
-        height: 1rem;
-    }
-
-    &.styled-svg_red {
-        color: #d62222;
-    }
-
-    &.styled-svg_white {
-        color: white;
-    }
-}
