@@ -9,10 +9,6 @@ html {
     @media (min-width: 1280px) {
         @include mx.text-l;
     }
-
-    @media (min-width: 1920px) {
-        @include mx.text-xl;
-    }
 }
 
 body {
