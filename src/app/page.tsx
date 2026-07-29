@@ -1,8 +1,8 @@
 "use client";
 
-import Skills from "./about-me/components/Skills/Skills";
-import ContactsForm from "./about-me/components/ContactsForm/ContactsForm";
-import Contacts from "./about-me/components/Contacts/Contacts";
+import Skills from "../components/Skills/Skills";
+import ContactsForm from "../components/ContactsForm/ContactsForm";
+import Contacts from "../components/Contacts/Contacts";
 
 function AboutMe() {
     return (
