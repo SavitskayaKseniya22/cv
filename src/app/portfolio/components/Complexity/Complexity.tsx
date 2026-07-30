@@ -1,5 +1,3 @@
-"use client";
-
 import Icon from "@/components/Icon/Icon";
 import { PuzzlePieceIcon } from "@heroicons/react/24/outline";
 import styles from "./complexity.module.scss";

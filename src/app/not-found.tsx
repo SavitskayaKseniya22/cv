@@ -8,7 +8,7 @@ function NotFound() {
     const router = useRouter();
     return (
         <>
-            <h1>Not Found</h1>
+            <h2>Not Found</h2>
             <button type="button" onClick={() => router.back()}>
                 <Icon icon={ArrowUturnLeftIcon} view="normal" />
             </button>

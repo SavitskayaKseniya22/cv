@@ -1,5 +1,3 @@
-"use client";
-
 import {
     CodeBracketIcon,
     Cog8ToothIcon,

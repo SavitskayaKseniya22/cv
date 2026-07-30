@@ -52,7 +52,7 @@ function PortfolioItem() {
     }
 
     if (!project) {
-        return <h1>Project not found.</h1>;
+        return <h2>Project not found.</h2>;
     }
 
     return (

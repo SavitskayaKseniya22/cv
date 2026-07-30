@@ -1,5 +1,3 @@
-"use client";
-
 import { ProjectType } from "@/app/interfaces";
 import Link from "next/link";
 import Image from "next/image";

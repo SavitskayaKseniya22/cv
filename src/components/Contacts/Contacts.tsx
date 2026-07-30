@@ -1,5 +1,3 @@
-"use client";
-
 import { AtSymbolIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import styles from "./contacts.module.scss";

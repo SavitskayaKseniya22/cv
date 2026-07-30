@@ -1,5 +1,3 @@
-"use client";
-
 import { ProjectType } from "@/app/interfaces";
 import Image from "next/image";
 import styles from "./features.module.scss";

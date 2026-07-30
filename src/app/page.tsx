@@ -1,5 +1,3 @@
-"use client";
-
 import Skills from "../components/Skills/Skills";
 import ContactsForm from "../components/ContactsForm/ContactsForm";
 import Contacts from "../components/Contacts/Contacts";
