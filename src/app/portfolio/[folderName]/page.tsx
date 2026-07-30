@@ -1,101 +1,86 @@
 "use client";
 
-import { ProjectType, ScreenSize } from "@/app/interfaces";
+import { ProjectType } from "@/app/interfaces";
 import { ArrowUpOnSquareStackIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Complexity from "../components/complexity";
-import ToolsList from "../components/tools/tools-list";
-import FeaturesList from "./components/features-list";
-import GithubLink from "./components/github-link";
-
-const StyledButtonList = styled("div")`
-    display: flex;
-    gap: 1rem;
-
-    a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem;
-        position: relative;
-    }
-`;
-
-const StyledPortfolioItem = styled("div")`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    column-gap: 2rem;
-    row-gap: 1rem;
-    flex-wrap: wrap;
-
-    @media ${ScreenSize.TABLET} {
-        flex-direction: row;
-    }
-`;
-
-export const StyledMainContent = styled("div")`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-    gap: 1rem;
-    position: relative;
-    overflow: auto;
-    width: 100%;
-`;
+import { useEffect, useState } from "react";
+import Complexity from "../components/Complexity/Complexity";
+import FeaturesList from "./components/FeaturesLlist/FeaturesLlist";
+import GithubLink from "./components/GithubLink";
+import styles from "./project.module.scss";
+import Icon from "@/components/Icon/Icon";
 
 function PortfolioItem() {
-    const [loadedData, setLoadedData] = useState<null | ProjectType>();
-    const [isLoading, setLoading] = useState(true);
+    const { folderName } = useParams<{ folderName: string }>();
 
-    const params = useParams();
+    const [project, setProject] = useState<ProjectType | null>(null);
+    const [isLoading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
+        const slug = folderName.replaceAll("-", " ").toLowerCase();
+
         fetch("https://raw.githubusercontent.com/SavitskayaKseniya22/projects-photos/main/projects.json")
-            .then(res => res.json())
-            .then((data: ProjectType[]) => {
-                const searchedProject =
-                    data.filter(
-                        project => project.name.toLowerCase() === (params.folderName as string).replaceAll("-", " "),
-                    )[0] || null;
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error("Failed to fetch projects");
+                }
 
-                setLoadedData(searchedProject);
-                setLoading(false);
+                return res.json();
             })
-            .catch(e => {
-                console.log(e);
-            });
-    }, [params.folderName]);
+            .then((data: ProjectType[]) => {
+                const foundProject = data.find(project => project.name.toLowerCase() === slug) ?? null;
 
-    if (!loadedData) return <>No portfolio data</>;
+                setProject(foundProject);
+            })
+            .catch(err => {
+                console.error(err);
+                setError(true);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [folderName]);
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Failed to load project.</p>;
+    }
+
+    if (!project) {
+        return <h1>Project not found.</h1>;
+    }
 
     return (
         <>
-            {isLoading && <p>Loading...</p>}
-            {!loadedData && !isLoading && <h1>No project data</h1>}
-            {loadedData && (
-                <>
-                    <StyledPortfolioItem>
-                        <h1>{loadedData.name}</h1>
-                        <StyledButtonList>
-                            <Link href={loadedData.deploy} target="_blank">
-                                <ArrowUpOnSquareStackIcon className="styled-svg styled-svg_big styled-svg_red" />
-                            </Link>
-                            <GithubLink href={loadedData.github} />
-                            <Complexity complexity={loadedData.complexity} className="complexity_in-project" />
-                        </StyledButtonList>
-                    </StyledPortfolioItem>
+            <div className={styles.project__header}>
+                <h2>{project.name}</h2>
+                <div className={styles.project__buttons}>
+                    {project.deploy && (
+                        <Link href={project.deploy} target="_blank" className={styles.project__button_deploy}>
+                            <Icon icon={ArrowUpOnSquareStackIcon} />
+                        </Link>
+                    )}
+                    <GithubLink href={project.github} />
+                    <Complexity complexity={project.complexity} className="complexity_in-project" />
+                </div>
+            </div>
 
-                    <p>{loadedData.description}</p>
-                    <ToolsList tools={loadedData.instruments} />
-                    <FeaturesList data={loadedData} title={params.folderName as string} />
-                </>
+            <p>{project.description}</p>
+
+            {project.instruments.length > 0 && (
+                <ul className={styles.project__instruments}>
+                    {project.instruments.map(item => (
+                        <li key={item}>{item}</li>
+                    ))}
+                </ul>
             )}
+
+            <FeaturesList data={project} title={folderName} />
         </>
     );
 }

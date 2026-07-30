@@ -21,3 +21,10 @@ body {
     color: vars.$color-white;
     background-color: vars.$color-dark-main;
 }
+
+a {
+    &:hover {
+        color: vars.$color-accent-main;
+        transition: color 0.3s;
+    }
+}

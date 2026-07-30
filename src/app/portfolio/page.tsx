@@ -1,86 +1,120 @@
 "use client";
 
-import React, { useReducer, useState, useEffect } from "react";
-import styled from "styled-components";
-import { ProjectType } from "../interfaces";
-import { reducer, portfolioInitialState, PortfolioActionKind, SortType } from "./components/portfolio-reducer";
-import SortButton from "./components/sort-button";
+import { useState, useEffect, useReducer } from "react";
+import { ProjectType, SortType } from "../interfaces";
+import SortButtons from "./components/SortButtons/SortButtons";
+import styles from "./portfolio.module.scss";
+import Icon from "@/components/Icon/Icon";
+import { BriefcaseIcon } from "@heroicons/react/24/outline";
+import ProjectPreview from "./components/ProjectPreview/ProjectPreview";
+import { sortByDate } from "@/utils";
 
-import ProjectsList from "./components/projects/project-list";
-import ToolsList from "./components/tools/tools-list";
+export type ProjectsType = {
+    projects: ProjectType[];
+    sort: SortType;
+};
 
-export const StyledMainContent = styled("div")`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-    gap: 1rem;
-    position: relative;
-    overflow: auto;
-    width: 100%;
-`;
+export enum PortfolioAction {
+    SET = "SET",
+    SORT = "SORT",
+}
 
-const StyledPortfolio = styled(StyledMainContent)`
-    .portfolio_header {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        align-items: center;
+export function reducer(
+    state: ProjectsType,
+    action:
+        | {
+              type: PortfolioAction.SET;
+              payload: ProjectType[];
+          }
+        | { type: PortfolioAction.SORT; payload: SortType },
+): ProjectsType {
+    const { type, payload } = action;
+
+    switch (type) {
+        case PortfolioAction.SET:
+            return {
+                ...state,
+                projects: sortByDate([...payload], state.sort),
+            };
+
+        case PortfolioAction.SORT: {
+            return {
+                ...state,
+                sort: payload,
+                projects: sortByDate([...state.projects], payload),
+            };
+        }
+
+        default:
+            return state;
     }
-`;
+}
+
+export const portfolioInitialState = {
+    projects: [],
+    sort: SortType.UP,
+};
 
 function Portfolio() {
-    const [porfolioData, dispatch] = useReducer(reducer, portfolioInitialState);
+    const [portfolioData, dispatch] = useReducer(reducer, portfolioInitialState);
+
     const [isLoading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         fetch("https://raw.githubusercontent.com/SavitskayaKseniya22/projects-photos/main/projects.json")
             .then(res => res.json())
             .then((data: ProjectType[]) => {
                 dispatch({
-                    type: PortfolioActionKind.SET,
-                    payload: data.filter(item => item.isItReady),
+                    type: PortfolioAction.SET,
+                    payload: data,
                 });
-                setLoading(false);
             })
             .catch(e => {
                 console.log(e);
+                setError(true);
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }, []);
 
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Failed to load projects.</p>;
+    }
+
+    if (portfolioData.projects.length === 0) {
+        return <p>No portfolio data.</p>;
+    }
+
     return (
-        <StyledPortfolio>
-            <div className="portfolio_header">
-                <h1>Portfolio</h1>
-                <SortButton
-                    sort={porfolioData.sort}
+        <>
+            <div className={styles.portfolio__header}>
+                <h2 className={styles["portfolio__chapter-title"]}>
+                    <Icon icon={BriefcaseIcon} />
+                    Learning projects
+                </h2>
+                <SortButtons
+                    sort={portfolioData.sort}
                     onClick={() => {
                         dispatch({
-                            type: PortfolioActionKind.SORT,
-                            payload: porfolioData.sort === SortType.DOWN ? SortType.UP : SortType.DOWN,
+                            type: PortfolioAction.SORT,
+                            payload: portfolioData.sort === SortType.DOWN ? SortType.UP : SortType.DOWN,
                         });
                     }}
                 />
             </div>
 
-            {isLoading && <p>Loading...</p>}
-            {!porfolioData && !isLoading && <p>No portfolio data</p>}
-            {porfolioData && (
-                <>
-                    <ProjectsList projects={porfolioData.projects.sorted} />
-
-                    <ToolsList
-                        tools={porfolioData.instruments.source}
-                        updateList={(item: string) => {
-                            dispatch({
-                                type: PortfolioActionKind.SELECTANDSORT,
-                                payload: item,
-                            });
-                        }}
-                    />
-                </>
-            )}
-        </StyledPortfolio>
+            <ul className={styles.portfolio__projects}>
+                {portfolioData.projects.map(project => (
+                    <ProjectPreview key={project.name} data={project} />
+                ))}
+            </ul>
+        </>
     );
 }
 

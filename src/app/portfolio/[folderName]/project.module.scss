@@ -1,0 +1,32 @@
+@use "@abstracts/mixins" as mx;
+
+.project__buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.project__header {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+
+  @include mx.media(tablet) {
+    flex-direction: row;
+  }
+}
+
+.project__instruments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.project__button_deploy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
