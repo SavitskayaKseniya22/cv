@@ -1,0 +1,120 @@
+@use "sass:map";
+@use "@abstracts/variables" as vars;
+
+// font-family
+
+@mixin font-jura-400 {
+    font-family: Jura, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-optical-sizing: auto;
+}
+
+@mixin font-jura-500 {
+    font-family: Jura, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-optical-sizing: auto;
+}
+
+@mixin font-jura-600 {
+    font-family: Jura, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-optical-sizing: auto;
+}
+
+@mixin font-jura-700 {
+    font-family: Jura, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-optical-sizing: auto;
+}
+
+// font view
+
+@mixin text-s {
+    font-size: 12px;
+    line-height: 150%;
+}
+
+@mixin text-m {
+    font-size: 14px;
+    line-height: 150%;
+}
+
+@mixin text-l {
+    font-size: 16px;
+    line-height: 150%;
+}
+
+@mixin text-xl {
+    font-size: 18px;
+    line-height: 150%;
+}
+
+@mixin text-btn-m {
+    @include text-m;
+    @include font-jura-500;
+}
+
+@mixin text-btn-l {
+    @include text-l;
+    @include font-jura-600;
+}
+
+@mixin text-headline-s {
+    font-size: 20px;
+    line-height: 150%;
+
+    @include font-jura-500;
+}
+
+@mixin text-headline-m {
+    font-size: 24px;
+    line-height: 150%;
+
+    @include font-jura-600;
+}
+
+@mixin text-headline-l {
+    font-size: 28px;
+    line-height: 150%;
+
+    @include font-jura-700;
+}
+
+@mixin clamp-strings($num) {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $num;
+    line-clamp: $num;
+    -webkit-box-orient: vertical;
+}
+
+@mixin main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    overflow: auto;
+}
+
+$breakpoints: (
+    mobile: 320px,
+    tablet: 768px,
+    laptop-s: 1024px,
+    laptop-m: 1280px,
+    laptop-l: 1920px,
+    laptop-xl: 2560px
+);
+
+@mixin media($screen) {
+    @media (min-width: map.get($breakpoints, $screen)) {
+        @content;
+    }
+}

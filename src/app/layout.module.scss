@@ -1,0 +1,35 @@
+@use "@abstracts/mixins" as mx;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100svh;
+
+  @include mx.media(tablet) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include mx.media(laptop-s) {
+    width: 70vw;
+  }
+
+  @include mx.media(laptop-xl) {
+    width: 60vw;
+  }
+}
+
+.layout__container {
+  position: relative;
+  display: flex;
+  flex-grow: 5;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  overflow: auto;
+}

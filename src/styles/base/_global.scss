@@ -1,0 +1,30 @@
+@use "@abstracts/variables" as vars;
+@use "@abstracts/mixins" as mx;
+@import "https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap";
+
+html {
+    @include mx.text-m;
+    @include mx.font-jura-400;
+
+    @media (min-width: 1280px) {
+        @include mx.text-l;
+    }
+}
+
+body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100svw;
+    height: 100svh;
+    color: vars.$color-white;
+    background-color: vars.$color-dark-main;
+}
+
+a {
+    &:hover {
+        color: vars.$color-accent-main;
+        transition: color 0.3s;
+    }
+}

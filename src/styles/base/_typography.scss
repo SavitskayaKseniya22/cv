@@ -1,0 +1,30 @@
+@use "@abstracts/variables" as vars;
+@use "@abstracts/mixins" as mx;
+
+h1 {
+    @include mx.text-headline-l;
+
+    margin: 1.2rem 0;
+}
+
+h2 {
+    @include mx.text-headline-m;
+
+    margin: 1rem 0;
+}
+
+h3 {
+    @include mx.text-headline-s;
+
+    margin: 0.8rem 0;
+}
+
+h4 {
+    @include mx.text-m;
+
+    margin: 0.6rem 0;
+}
+
+h5 {
+    margin: 0.4rem 0;
+}
