@@ -23,7 +23,9 @@ function ProjectPreview({ data }: { data: ProjectType }) {
                 />
             </div>
             <div className={styles.project__decription}>
-                <h3>{data.name}</h3>
+                <h3>
+                    <Link href={`/portfolio/${data.name.toLowerCase().replaceAll(" ", "-")}`}>{data.name}</Link>
+                </h3>
                 <p>{data.description}</p>
             </div>
 
