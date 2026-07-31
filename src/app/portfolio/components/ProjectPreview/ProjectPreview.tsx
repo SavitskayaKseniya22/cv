@@ -27,14 +27,12 @@ function ProjectPreview({ data }: { data: ProjectType }) {
                 <p>{data.description}</p>
             </div>
 
-            <div className={styles.project__buttons}>
-                {data.deploy && (
-                    <Link href={data.deploy} target="_blank" className={styles.project__button_deploy}>
-                        <Icon icon={ArrowUpOnSquareStackIcon} />
-                    </Link>
-                )}
-                <GithubLink href={data.github} />
-            </div>
+            {data.deploy && (
+                <Link href={data.deploy} target="_blank" className={styles.project__button_deploy}>
+                    <Icon icon={ArrowUpOnSquareStackIcon} />
+                </Link>
+            )}
+            <GithubLink href={data.github} />
         </li>
     );
 }

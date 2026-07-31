@@ -3,17 +3,24 @@
 .project {
   position: relative;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   align-items: center;
   justify-content: space-between;
+  padding: 0.5rem;
+  background-color: #8080801a;
 }
 
 .project__preview {
   position: relative;
-  flex-shrink: 0;
-  width: 6rem;
-  height: 6rem;
+  display: none;
   overflow: hidden;
+
+  @include mx.media(mobile) {
+    display: block;
+    flex-shrink: 0;
+    width: 6rem;
+    height: 6rem;
+  }
 
   img {
     filter: opacity(60%);
@@ -25,12 +32,6 @@
 
   p {
     @include mx.text-m;
-    @include mx.clamp-strings(3);
+    @include mx.clamp-strings(2);
   }
-}
-
-.project__buttons {
-  display: flex;
-  flex-shrink: 0;
-  gap: 1rem;
 }
