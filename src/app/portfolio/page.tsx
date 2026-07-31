@@ -34,7 +34,7 @@ export function reducer(
         case PortfolioAction.SET:
             return {
                 ...state,
-                projects: sortByDate([...payload], state.sort),
+                projects: sortByDate([...payload.filter(item => item.isItReady)], state.sort),
             };
 
         case PortfolioAction.SORT: {

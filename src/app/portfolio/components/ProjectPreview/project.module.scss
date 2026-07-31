@@ -2,35 +2,35 @@
 
 .project {
   position: relative;
-  z-index: 1;
   display: flex;
+  gap: 2rem;
   align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 120px;
-  padding: 1rem;
+  justify-content: space-between;
+}
+
+.project__preview {
+  position: relative;
+  flex-shrink: 0;
+  width: 6rem;
+  height: 6rem;
   overflow: hidden;
 
-  @include mx.media(laptop-m) {
-    width: 150px;
-    height: 150px;
-  }
-
   img {
-    z-index: -1;
-    filter: grayscale(80%) opacity(20%);
-    transition:
-      transform 1s,
-      filter 1s;
+    filter: opacity(60%);
   }
+}
 
-  &:hover {
-    img {
-      filter: grayscale(60%) opacity(40%);
-      transform: scale(1.2);
-      transition:
-        transform 1s,
-        filter 1s;
-    }
+.project__decription {
+  flex-grow: 1;
+
+  p {
+    @include mx.text-m;
+    @include mx.clamp-strings(3);
   }
+}
+
+.project__buttons {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1rem;
 }
