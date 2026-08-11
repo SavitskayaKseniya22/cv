@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useReducer } from "react";
 import { ProjectType, SortType } from "../interfaces";
-import SortButtons from "./components/SortButtons/SortButtons";
 import styles from "./portfolio.module.scss";
 import Icon from "@/components/Icon/Icon";
 import { BriefcaseIcon } from "@heroicons/react/24/outline";
@@ -62,7 +61,7 @@ function Portfolio() {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        fetch("https://raw.githubusercontent.com/SavitskayaKseniya22/projects-photos/main/projects.json")
+        fetch("/api/projects")
             .then(res => res.json())
             .then((data: ProjectType[]) => {
                 dispatch({
@@ -98,15 +97,6 @@ function Portfolio() {
                     <Icon icon={BriefcaseIcon} />
                     Learning projects
                 </h2>
-                <SortButtons
-                    sort={portfolioData.sort}
-                    onClick={() => {
-                        dispatch({
-                            type: PortfolioAction.SORT,
-                            payload: portfolioData.sort === SortType.DOWN ? SortType.UP : SortType.DOWN,
-                        });
-                    }}
-                />
             </div>
 
             <ul className={styles.portfolio__projects}>

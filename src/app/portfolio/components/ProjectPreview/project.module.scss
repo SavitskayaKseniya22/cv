@@ -1,17 +1,20 @@
 @use "@abstracts/mixins" as mx;
 
 .project {
-  position: relative;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
   padding: 0.5rem 1rem 0.5rem 0.5rem;
   background-color: #8080801a;
 
   a {
     flex-shrink: 0;
   }
+}
+
+.project__main {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .project__preview {
@@ -22,8 +25,8 @@
   @include mx.media(mobile) {
     display: block;
     flex-shrink: 0;
-    width: 6rem;
-    height: 6rem;
+    width: 7rem;
+    height: 7rem;
   }
 
   img {
@@ -32,10 +35,26 @@
 }
 
 .project__decription {
+  display: flex;
   flex-grow: 1;
+  flex-direction: column;
 
   p {
-    @include mx.text-m;
+    @include mx.text-l;
     @include mx.clamp-strings(2);
   }
+}
+
+.project__instruments,
+.project__features {
+  @include mx.text-s;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 1rem;
+}
+
+.project__block {
+  display: flex;
+  flex-direction: column;
 }
