@@ -1,7 +1,6 @@
 export type ProjectType = {
     name: string;
     description: string;
-    date: [string, string];
     deploy: string;
     github: string;
     instruments: string[];
@@ -12,8 +11,3 @@ export type ProjectType = {
     murkup?: string[];
     isItReady: boolean;
 };
-
-export enum SortType {
-    UP = "up",
-    DOWN = "down",
-}

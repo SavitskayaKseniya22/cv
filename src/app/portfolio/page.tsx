@@ -1,61 +1,14 @@
 "use client";
 
-import { useState, useEffect, useReducer } from "react";
-import { ProjectType, SortType } from "../interfaces";
+import { useState, useEffect } from "react";
+import { ProjectType } from "../interfaces";
 import styles from "./portfolio.module.scss";
 import Icon from "@/components/Icon/Icon";
 import { BriefcaseIcon } from "@heroicons/react/24/outline";
 import ProjectPreview from "./components/ProjectPreview/ProjectPreview";
-import { sortByDate } from "@/utils";
-
-export type ProjectsType = {
-    projects: ProjectType[];
-    sort: SortType;
-};
-
-export enum PortfolioAction {
-    SET = "SET",
-    SORT = "SORT",
-}
-
-export function reducer(
-    state: ProjectsType,
-    action:
-        | {
-              type: PortfolioAction.SET;
-              payload: ProjectType[];
-          }
-        | { type: PortfolioAction.SORT; payload: SortType },
-): ProjectsType {
-    const { type, payload } = action;
-
-    switch (type) {
-        case PortfolioAction.SET:
-            return {
-                ...state,
-                projects: sortByDate([...payload.filter(item => item.isItReady)], state.sort),
-            };
-
-        case PortfolioAction.SORT: {
-            return {
-                ...state,
-                sort: payload,
-                projects: sortByDate([...state.projects], payload),
-            };
-        }
-
-        default:
-            return state;
-    }
-}
-
-export const portfolioInitialState = {
-    projects: [],
-    sort: SortType.UP,
-};
 
 function Portfolio() {
-    const [portfolioData, dispatch] = useReducer(reducer, portfolioInitialState);
+    const [portfolioData, setPortfolioData] = useState<ProjectType[]>([]);
 
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -64,10 +17,7 @@ function Portfolio() {
         fetch("/api/projects")
             .then(res => res.json())
             .then((data: ProjectType[]) => {
-                dispatch({
-                    type: PortfolioAction.SET,
-                    payload: data,
-                });
+                setPortfolioData(data);
             })
             .catch(e => {
                 console.log(e);
@@ -86,7 +36,7 @@ function Portfolio() {
         return <p>Failed to load projects.</p>;
     }
 
-    if (portfolioData.projects.length === 0) {
+    if (portfolioData.length === 0) {
         return <p>No portfolio data.</p>;
     }
 
@@ -100,7 +50,7 @@ function Portfolio() {
             </div>
 
             <ul className={styles.portfolio__projects}>
-                {portfolioData.projects.map(project => (
+                {portfolioData.map(project => (
                     <ProjectPreview key={project.name} data={project} />
                 ))}
             </ul>
