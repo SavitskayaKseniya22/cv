@@ -11,17 +11,9 @@
   text-align: center;
 
   @include mx.media(tablet) {
-    max-width: 170px;
+    max-width: 220px;
     height: 100%;
     padding: 1rem;
-  }
-
-  @include mx.media(laptop-s) {
-    max-width: 220px;
-  }
-
-  @include mx.media(laptop-l) {
-    max-width: unset;
   }
 
   &::before {

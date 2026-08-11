@@ -14,18 +14,7 @@
 
 .portfolio__projects {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: column;
   gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
   margin-bottom: auto;
-
-  @include mx.media(tablet) {
-    gap: 1rem;
-  }
-
-  @include mx.media(laptop-xl) {
-    gap: 1.5rem;
-  }
 }

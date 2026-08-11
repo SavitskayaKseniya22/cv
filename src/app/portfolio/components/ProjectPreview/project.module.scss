@@ -1,36 +1,60 @@
 @use "@abstracts/mixins" as mx;
 
 .project {
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  background-color: #8080801a;
+
+  a {
+    flex-shrink: 0;
+  }
+}
+
+.project__main {
   position: relative;
-  z-index: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 120px;
-  padding: 1rem;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.project__preview {
+  position: relative;
+  display: none;
   overflow: hidden;
 
-  @include mx.media(laptop-m) {
-    width: 150px;
-    height: 150px;
+  @include mx.media(mobile) {
+    display: block;
+    flex-shrink: 0;
+    width: 7rem;
+    height: 7rem;
   }
 
   img {
-    z-index: -1;
-    filter: grayscale(80%) opacity(20%);
-    transition:
-      transform 1s,
-      filter 1s;
+    filter: opacity(60%);
   }
+}
 
-  &:hover {
-    img {
-      filter: grayscale(60%) opacity(40%);
-      transform: scale(1.2);
-      transition:
-        transform 1s,
-        filter 1s;
-    }
+.project__decription {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+
+  p {
+    @include mx.text-l;
+    @include mx.clamp-strings(2);
   }
+}
+
+.project__instruments,
+.project__features {
+  @include mx.text-s;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 1rem;
+}
+
+.project__block {
+  display: flex;
+  flex-direction: column;
 }
