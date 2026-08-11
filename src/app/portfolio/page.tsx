@@ -51,7 +51,7 @@ function Portfolio() {
 
             <ul className={styles.portfolio__projects}>
                 {portfolioData.map(project => (
-                    <ProjectPreview key={project.name} data={project} />
+                    <ProjectPreview key={`${project.name}-${project.github}`} data={project} />
                 ))}
             </ul>
         </>
