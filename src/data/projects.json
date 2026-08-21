@@ -1,5 +1,17 @@
 [
     {
+        "name": "News agent",
+        "description": "Frontend for Hacker News api",
+        "task": "",
+        "deploy": "https://news-agent.netlify.app/",
+        "github": "https://github.com/SavitskayaKseniya22/app-news-agent",
+        "instruments": ["next", "heroicons", "react", "zod", "tailwindcss", "eslint", "prettier", "typescript"],
+        "preview": "/portfolio-images/news-agent/preview.png",
+        "complexity": 3,
+        "features": ["mobile layout"],
+        "isItReady": true
+    },
+    {
         "name": "Пестовский лесокомбинат",
         "description": "Test assignment",
         "task": "",
@@ -28,11 +40,11 @@
         "description": "To do list",
         "task": "",
         "deploy": "https://test-green-todo.netlify.app/",
-        "github": "https://github.com/SavitskayaKseniya22/todo",
+        "github": "https://github.com/SavitskayaKseniya22/test-green-todo",
         "instruments": ["react", "typescript", "eslint", "next", "heroicons", "tailwind", "jest"],
         "preview": "/portfolio-images/todo/preview.png",
         "complexity": 1,
-        "features": ["mobile layout", "sort tasks"],
+        "features": ["mobile layout", "filter"],
         "isItReady": true
     },
     {
@@ -44,7 +56,7 @@
         "instruments": ["react", "vite", "typescript", "eslint", "prettier"],
         "preview": "/portfolio-images/todo-union/preview.png",
         "complexity": 1,
-        "features": ["users page, mobile layout"],
+        "features": ["users page", "mobile layout"],
         "isItReady": true
     },
     {
