@@ -1,9 +1,18 @@
 import Link from "next/link";
 import styles from "./person.module.scss";
+import Image from "next/image";
 
 function Person() {
     return (
         <div className={styles.person}>
+            <Image
+                src="/pexels-eberhard-grossgasteiger-2310641.webp"
+                alt="Background image"
+                fill
+                priority
+                sizes="100vw"
+                className={styles.person__image}
+            />
             <h1>Kseniia Savitskaia</h1>
             <h2>Web developer</h2>
             <ul className={styles.person__socials}>

@@ -9,26 +9,23 @@
   padding: 0.5rem;
   text-align: center;
 
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+
   @include mx.media(tablet) {
     gap: 0.5rem;
     max-width: 220px;
     height: 100%;
     padding: 1rem;
   }
+}
 
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    content: "";
-    background-image: url("/pexels-eberhard-grossgasteiger-2310641.jpg");
-    background-position: center;
-    background-size: cover;
-    filter: blur(0.25px) grayscale(10%);
-  }
+.person__image {
+  z-index: 0;
+  object-fit: cover;
+  filter: blur(0.25px) grayscale(10%);
 }
 
 .person__socials {
