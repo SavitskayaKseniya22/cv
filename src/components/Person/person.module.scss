@@ -5,12 +5,12 @@
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  gap: 0.5rem;
   justify-content: flex-end;
   padding: 0.5rem;
   text-align: center;
 
   @include mx.media(tablet) {
+    gap: 0.5rem;
     max-width: 220px;
     height: 100%;
     padding: 1rem;

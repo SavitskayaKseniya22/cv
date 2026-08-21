@@ -4,7 +4,7 @@ import styles from "./person.module.scss";
 function Person() {
     return (
         <div className={styles.person}>
-            <h1>Savitskaia Kseniia</h1>
+            <h1>Kseniia Savitskaia</h1>
             <h2>Web developer</h2>
             <ul className={styles.person__socials}>
                 <li>
