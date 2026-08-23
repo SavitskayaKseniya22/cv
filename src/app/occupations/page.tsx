@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AcademicCapIcon, BriefcaseIcon } from "@heroicons/react/24/outline";
 import styles from "./occupations.module.scss";
-import Icon from "@/components/Icon/Icon";
+import Icon from "@/components/icon/icon";
 
 function Occupation() {
     return (

@@ -7,7 +7,7 @@ import {
     CircleStackIcon,
 } from "@heroicons/react/24/outline";
 import styles from "./skills.module.scss";
-import Icon from "@/components/Icon/Icon";
+import Icon from "@/components/icon/icon";
 
 export default function Skills() {
     return (

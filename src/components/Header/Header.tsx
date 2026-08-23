@@ -3,7 +3,7 @@
 import { UserIcon, BriefcaseIcon, FolderIcon, FolderArrowDownIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Icon from "../Icon/Icon";
+import Icon from "../icon/icon";
 import styles from "./header.module.scss";
 import clsx from "clsx";
 

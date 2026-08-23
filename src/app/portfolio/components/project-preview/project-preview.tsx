@@ -2,8 +2,8 @@ import { ProjectType } from "@/app/interfaces";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./project.module.scss";
-import GithubLink from "../GithubLink/GithubLink";
-import Icon from "@/components/Icon/Icon";
+import GithubLink from "../github-link/github-link";
+import Icon from "@/components/icon/icon";
 import { ArrowUpOnSquareStackIcon } from "@heroicons/react/24/outline";
 
 const imageLoader = ({ src }: { src: string }) => src;

@@ -1,8 +1,8 @@
 import React from "react";
 import "../styles/styles.scss";
 import styles from "./layout.module.scss";
-import Header from "@/components/Header/Header";
-import Person from "@/components/Person/Person";
+import Header from "@/components/header/header";
+import Person from "@/components/person/person";
 
 export const metadata = {
     title: "CV",

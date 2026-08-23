@@ -1,6 +1,6 @@
-import Skills from "../components/Skills/Skills";
-import ContactsForm from "../components/ContactsForm/ContactsForm";
-import Contacts from "../components/Contacts/Contacts";
+import Skills from "../components/skills/skills";
+import ContactsForm from "../components/contacts-form/contacts-form";
+import Contacts from "../components/contacts/contacts";
 
 function AboutMe() {
     return (

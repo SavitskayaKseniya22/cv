@@ -9,7 +9,9 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "format": "prettier . --write",
-        "format:check": "prettier . --check"
+        "format:check": "prettier . --check",
+        "stylelint": "stylelint \"**/*.{css,scss}\"",
+        "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix"
     },
     "dependencies": {
         "@emailjs/browser": "^4.4.1",
@@ -28,6 +30,7 @@
         "eslint": "^9.39.5",
         "eslint-config-next": "^16.2.11",
         "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-unicorn": "^65.0.1",
         "postcss": "^8.5.22",
         "postcss-scss": "^4.0.9",
         "prettier": "^3.9.6",
@@ -36,7 +39,6 @@
         "stylelint-config-standard": "^40.0.0",
         "stylelint-config-standard-scss": "^17.0.0",
         "stylelint-scss": "^7.2.0",
-        "typescript": "^5.9.3",
-        "typescript-eslint": "^8.65.0"
+        "typescript": "^5.9.3"
     }
 }

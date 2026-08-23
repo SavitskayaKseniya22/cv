@@ -1,7 +1,7 @@
 import { AtSymbolIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import styles from "./contacts.module.scss";
-import Icon from "@/components/Icon/Icon";
+import Icon from "@/components/icon/icon";
 
 function ContactsList() {
     return (

@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { ProjectType } from "../interfaces";
 import styles from "./portfolio.module.scss";
-import Icon from "@/components/Icon/Icon";
+import Icon from "@/components/icon/icon";
 import { BriefcaseIcon } from "@heroicons/react/24/outline";
-import ProjectPreview from "./components/ProjectPreview/ProjectPreview";
+import ProjectPreview from "./components/project-preview/project-preview";
 
 function Portfolio() {
     const [portfolioData, setPortfolioData] = useState<ProjectType[]>([]);
@@ -15,12 +15,12 @@ function Portfolio() {
 
     useEffect(() => {
         fetch("/api/projects")
-            .then(res => res.json())
+            .then(resource => resource.json())
             .then((data: ProjectType[]) => {
                 setPortfolioData(data);
             })
-            .catch(e => {
-                console.log(e);
+            .catch(error_ => {
+                console.log(error_);
                 setError(true);
             })
             .finally(() => {

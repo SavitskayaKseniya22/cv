@@ -1,4 +1,4 @@
-import Icon from "@/components/Icon/Icon";
+import Icon from "@/components/icon/icon";
 import { PuzzlePieceIcon } from "@heroicons/react/24/outline";
 import styles from "./complexity.module.scss";
 import clsx from "clsx";
